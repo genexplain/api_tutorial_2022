@@ -1,0 +1,489 @@
+# ChIP-seq data analysis using the genexplain-api JSON interface
+
+The JSON document [below](#json-configuration-for-the-tutorial-workflow) executes 
+the tutorial workflow using the *exec* program of the
+Java package with a command like the following. The JSON file is provided
+with the tutorial material as *genexplain_tutorial_chipseq_analysis.json*.
+
+```bash
+java -jar genexplain-api.jar exec genexplain_tutorial_chipseq_analysis.json
+```
+
+The [described workflow steps](chipseq_analysis_intro.md) are indicated in comments for reference.
+
+Please note that the JSON properties `user` and `password`, possibly also `server`,
+need to be altered to valid parameters.
+
+The external scripts *waitns.sh*, *chipseq_analysis_grn_pwms.py*, *chipseq_analysis_tal1.py*
+are provided with the tutorial material. The script paths (**$WAIT_SCRIPT**, **$PWM_ID_SCRIPT**,
+**$TAL1_GENE_SCRIPT**) in the JSON configuration may require adjustment.
+
+The JSON document assumes an existing platform project. It was named
+*api2022_tutorial* as example. To run execute the workflow a new
+project needs to be created and the value assigned to **$PARENT_FOLDER**
+(currently *data/Projects/api2022_tutorial/Data*) needs to be
+adjusted.
+
+Similarly, the tutorial paths assigned to **$CHIPSEQ_BED_ALL** and
+**$CHIPSEQ_BED_SAMPLE** may require adjustment.
+
+
+## JSON configuration for the tutorial workflow
+
+```json
+{
+    "server":          "https://platform.genexplain.com",
+    "user":            "someuser@email.io",
+    "password":        "12345",
+    "reconnect":       true,
+    "replaceStrings":  [
+        ["$SPECIES",                    "Human (Homo sapiens)"],
+        ["$GENOME_MAPPING",             "hg18->hg38"],
+        ["$ENSEMBL_104_SELECTOR",       "Ensembl 104.38 Human (hg38)"],
+        ["$MEALR_TRANSFAC_PROFILE",     "databases/TRANSFAC(R) 2022.1/Data/profiles/vertebrate_human_p0.05_non3d"],
+        ["$GRN_TRANSFAC_PROFILE",       "databases/TRANSFAC(R) 2022.1/Data/profiles/vertebrate_human_p0.001_non3d"],
+        ["$BED_PATH_ALL",               "$FOLDER_PATH/GSM614003_jurkat.tal1"],
+        ["$MAPPED_GENES_GO_PATH",       "$MAPPED_GENE_PATH_ALL GO"],
+        ["$MAPPED_GENES_REACTOME_PATH", "$MAPPED_GENE_PATH_ALL Reactome"],
+        ["$MAPPED_GENES_HUMANPSD_PATH", "$MAPPED_GENE_PATH_ALL Human disease biomarkers"],
+        ["$MAPPED_GENE_PATH_ALL",       "$MAPPED_PATH_ALL Genes"],
+        ["$MEALR_BACKGROUND_PATH",      "$MAPPED_PATH_ALL random 1000"],
+        ["$MAPPED_PATH_ALL",            "$FOLDER_PATH/jurkat_chipseq_hg38"],
+        ["$UNMAPPED_PATH_ALL",          "$FOLDER_PATH/jurkat_chipseq_hg38_unmapped"],
+        ["$BED_PATH_SAMPLE",            "$FOLDER_PATH/GSM614003_jurkat.tal1_1000"],
+        ["$MEALR_TOP_GENE_PATH",        "$MEALR_TOP_PATH Genes"],
+        ["$GRN_FACTOR_PATH",            "$MEALR_VENN_PATH/Rows present in both tables"],
+        ["$GRN_MATCH_PATH",             "$GRN_PWM_PROFILE Match"],
+        ["$TAL1_MATCH_PATH",            "$GRN_PWM_PROFILE TAL1 Match"],
+        ["$GRN_PWM_PROFILE",            "$GRN_PWM_PATH profile"],
+        ["$GRN_PWM_PATH",               "$MEALR_OUTPUT_PATH/grn_pwms"],
+        ["$TAL1_TRACK_PATH",            "$TAL1_GENE_PATH promoter"],
+        ["$TAL1_GENE_PATH",             "$MEALR_OUTPUT_PATH/tal1"],
+        ["$MEALR_VENN_PATH",            "$MEALR_TOP_PATH Venn"],
+        ["$MEALR_TOP_PATH",             "$MEALR_MOTIF_PATH Top 50"],
+        ["$MEALR_MOTIF_PATH",           "$MEALR_OUTPUT_PATH/MEALR_positive_coefficients"],
+        ["$MEALR_OUTPUT_PATH",          "$MAPPED_PATH_SAMPLE MEALR"],
+        ["$MAPPED_PATH_SAMPLE",         "$FOLDER_PATH/jurkat_chipseq_hg38_1000"],
+        ["$UNMAPPED_PATH_SAMPLE",       "$FOLDER_PATH/jurkat_chipseq_hg38_1000_unmapped"],
+        ["$FOLDER_PATH",                "$PARENT_FOLDER$/$FOLDER_NAME$"],
+        ["$PARENT_FOLDER$",             "data/Projects/api2022_tutorial/Data"],
+        ["$FOLDER_NAME$",               "chipseq_analysis_workflow_json"],
+        ["$CHIPSEQ_BED_ALL",            "../data/GSM614003_jurkat.tal1.bed"],
+        ["$CHIPSEQ_BED_SAMPLE",         "../data/GSM614003_jurkat.tal1_1000.bed"],
+        ["$WAIT_SCRIPT",                "waitns.sh"],
+        ["$PWM_ID_SCRIPT",              "chipseq_analysis_grn_pwms.py"],
+        ["$TAL1_GENE_SCRIPT",           "chipseq_analysis_tal1.py"]
+    ],
+    "tasks": [
+        {
+            "do": "createFolder",
+            "showOutput": true,
+            "path": "$PARENT_FOLDER$",
+            "name": "$FOLDER_NAME$",
+            "comment": "Prepare folder for analysis data and results"
+        },
+        
+        {
+            "do":       "imPort",
+            "file":     "$CHIPSEQ_BED_ALL", 
+            "path":     "$FOLDER_PATH",
+            "importer": "BED format (*.bed)",
+            "verbose": true,
+            "parameters": {
+                "dbSelector": "Ensembl 52.36n Human (hg18)"
+            },
+            "comment": "Step 1.1 Import the BED file with TAL1-bound regions into the destination folder"
+        },
+        
+        {
+            "do": "external",
+            "showOutput": true,
+            "bin": "sh",
+            "params": ["$WAIT_SCRIPT"],
+            "comment": "Run external script to allow server process to finish before using imported data"
+        },
+        
+        {
+            "do":      "analyze",
+            "method":  "liftOver1",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "input":     "$BED_PATH_ALL",
+                "mapping":   "$GENOME_MAPPING",
+                "minMatch":  0.95,
+                "out_file1": "$MAPPED_PATH_ALL",
+                "out_file2": "$UNMAPPED_PATH_ALL"
+            },
+            "comment": "Step 1.2 Run Liftover to map hg18 coordinates to hg38"
+        },
+        
+        {
+            "do":      "analyze",
+            "method":  "Track to gene set",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "sourcePaths": ["$MAPPED_PATH_ALL"],
+                "species":     "$SPECIES",
+                "from":        -5000,
+                "to":          2000,
+                "destPath":    "$MAPPED_GENE_PATH_ALL"
+            },
+            "comment": "Step 2. Run 'Track to gene set' tool to map genomic coordinates to genes"
+        },
+        
+        
+        {
+            "do":      "analyze",
+            "method":  "Functional classification",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "sourcePath": "$MAPPED_GENE_PATH_ALL",
+                "species":    "$SPECIES",
+                "bioHub":     "Full gene ontology classification",
+                "minHits":    1,
+                "pvalueThreshold": 1,
+                "outputTable": "$MAPPED_GENES_GO_PATH"
+            },
+            "comment": "Step 3.1 Enrichment of genes associated with Gene Ontology terms using 'Functional classification'"
+        },
+        
+        {
+            "do":       "export",
+            "file":     "functional_classification_result_GO.tsv",
+            "path":     "$MAPPED_GENES_GO_PATH",
+            "exporter": "Tab-separated text (*.txt)",
+            "parameters": {},
+            "comment": "Step 3.2 Export analysis results to local file"
+        },
+        
+        {
+            "do":      "analyze",
+            "method":  "Functional classification",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "sourcePath": "$MAPPED_GENE_PATH_ALL",
+                "species":    "$SPECIES",
+                "bioHub":     "Reactome pathways (74)",
+                "minHits":    1,
+                "pvalueThreshold": 1,
+                "outputTable": "$MAPPED_GENES_REACTOME_PATH"
+            },
+            "comment": "Step 3.3 Enrichment of genes associated with Reactome pathways using 'Functional classification'"
+        },
+        
+        {
+            "do":       "export",
+            "file":     "functional_classification_result_Reactome.tsv",
+            "path":     "$MAPPED_GENES_REACTOME_PATH",
+            "exporter": "Tab-separated text (*.txt)",
+            "parameters": {},
+            "comment": "Step 3.4 Export analysis results to local file"
+        },
+        
+        {
+            "do":      "analyze",
+            "method":  "Functional classification",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "sourcePath": "$MAPPED_GENE_PATH_ALL",
+                "species":    "$SPECIES",
+                "bioHub":     "HumanPSD(TM) disease (2022.1)",
+                "minHits":    1,
+                "pvalueThreshold": 1,
+                "outputTable": "$MAPPED_GENES_HUMANPSD_PATH"
+            },
+            "comment": "Step 3.5 Enrichment of biomarkers of human diseases annotated in the HumanPSD knowledgebase"
+        },
+        
+        {
+            "do":       "export",
+            "file":     "functional_classification_result_HumanPSD.tsv",
+            "path":     "$MAPPED_GENES_HUMANPSD_PATH",
+            "exporter": "Tab-separated text (*.txt)",
+            "parameters": {},
+            "comment": "Step 3.6 Export analysis results to local file"
+        },
+        
+        {
+            "do":      "analyze",
+            "method":  "Create random track",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "inputTrackPath":      "$MAPPED_PATH_ALL",
+                "dbSelector":          "$ENSEMBL_104_SELECTOR",
+                "species":             "$SPECIES",
+                "standardChromosomes": true,
+                "seqNumber":           1000,
+                "seqLength":           0,
+                "from":                0,
+                "to":                  0,
+                "withOverlap":         false,
+                "randomShift":         false,
+                "outputTrackPath":     "$MEALR_BACKGROUND_PATH",
+                "randSeed":            123
+            },
+            "comment": "Step 4. Create random track not overlapping with TAL1-bound regions"
+        },        
+        
+        {
+            "do":       "imPort",
+            "file":     "$CHIPSEQ_BED_SAMPLE", 
+            "path":     "$FOLDER_PATH",
+            "importer": "BED format (*.bed)",
+            "verbose": true,
+            "parameters": {
+                "dbSelector": "Ensembl 52.36n Human (hg18)"
+            },
+            "comment": "Step 5.1 Import sampled TAL1 ChIP-seq sites"
+        },
+        
+        {
+            "do": "external",
+            "showOutput": true,
+            "bin": "sh",
+            "params": ["$WAIT_SCRIPT"],
+            "comment": "Run external script to allow server process to finish before using imported data"
+        },
+        
+        {
+            "do":      "analyze",
+            "method":  "liftOver1",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "input":     "$BED_PATH_SAMPLE",
+                "mapping":   "$GENOME_MAPPING",
+                "minMatch":  0.95,
+                "out_file1": "$MAPPED_PATH_SAMPLE",
+                "out_file2": "$UNMAPPED_PATH_SAMPLE"
+            },
+            "comment": "Step 5.2 Map coordinates from hg18 to hg38"
+        },
+        
+        {
+            "do":      "analyze",
+            "method":  "MEALR (tracks)",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "yesSetPath":      "$MAPPED_PATH_SAMPLE",
+                "noSetPath":       "$MEALR_BACKGROUND_PATH",
+                "dbSelector":      "$ENSEMBL_104_SELECTOR",
+                "profilePath":     "$MEALR_TRANSFAC_PROFILE",
+                "maxPosCoef":      150,
+                "maxComplexity":   0.5,
+                "complexityInc":   0.02,
+                "maxUnimproved":   20,
+                "scoresWithNoSet": false,
+                "output":          "$MEALR_OUTPUT_PATH"
+            },
+            "comment": "Step 6. Analyze target and background genomic regions using MEALR to find important PWMs"
+        },
+        
+        {
+            "do":      "analyze",
+            "method":  "Select top rows",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "inputTable":  "$MEALR_MOTIF_PATH",
+                "column":      "Coefficient",
+                "types":       ["Top"],
+                "topPercent":  100.0,
+                "topCount":    50,
+                "topMinCount": 50,
+                "topTable":    "$MEALR_TOP_PATH"
+            },
+            "comment": "Step 7.1 Extract top 50 PWMs ranked by logistic regression coefficient"
+        },
+        
+        {
+            "do":      "analyze",
+            "method":  "Matrices to molecules",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "sitesCollection":      "$MEALR_TOP_PATH",
+                "siteModelsCollection": "$MEALR_TRANSFAC_PROFILE",
+                "species":              "$SPECIES",
+                "targetType":           "Genes: Ensembl",
+                "outputTable":          "$MEALR_TOP_GENE_PATH"
+            },
+            "comment": "Step 7.2 Convert PWMs to factor genes"
+        },
+        
+        {
+            "do":      "analyze",
+            "method":  "Venn diagrams",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "table1Path": "$MAPPED_GENE_PATH_ALL",
+                "table1Name": "Genes near TAL1 sites",
+                "table2Path": "$MEALR_TOP_GENE_PATH",
+                "table2Name": "MEALR transcription factors",
+                "simple":     true,
+                "output":     "$MEALR_VENN_PATH"
+            },
+            "comment": "Step 8 Intersect factors identified by MEALR and genes with nearby TAL1 ChIP-seq sites"
+        },
+        
+        {
+            "do":     "get",
+            "table":  "$GRN_FACTOR_PATH",
+            "toFile": "grn_factors.json",
+            "comment": "Step 9.1 Download table with potential GRN factors to local file"
+        },
+        
+        {
+            "do":     "external",
+            "bin":    "python3",
+            "params": [
+                "$PWM_ID_SCRIPT"
+            ],
+            "comment": "Step 9.2 Run external script to create PWM table"
+        },
+        
+        {
+            "do": "imPort",
+            "file": "grn_pwms.tsv",
+            "path": "$MEALR_OUTPUT_PATH",
+            "importer": "Tabular (*.txt, *.xls, *.tab, etc.)",
+            "parameters": {
+                "columnForID": "PWM",
+                "tableType":   "Matrices: TRANSFAC",
+                "species":     "Human (Homo sapiens)"
+            },
+            "comment": "Step 9.3 Import PWM table created by external script"
+        },
+        
+        {
+            "do": "external",
+            "showOutput": true,
+            "bin": "sh",
+            "params": ["$WAIT_SCRIPT"],
+            "comment": "Run external script to allow server process to finish before using imported data"
+        },
+        
+        {
+            "do":      "analyze",
+            "method":  "Create profile from site model table",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "table":   "$GRN_PWM_PATH",
+                "profile": "$GRN_TRANSFAC_PROFILE",
+                "outputProfile":  "$GRN_PWM_PROFILE"
+            },
+            "comment": "Step 9.4 Create Match(TM) profile for PWMs of potential GRN factors"
+        },
+        
+        {
+            "do":      "analyze",
+            "method":  "TRANSFAC(R) Match(TM) for tracks",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "sequencePath":      "$MAPPED_PATH_ALL",
+                "dbSelector":        "$ENSEMBL_104_SELECTOR",
+                "profilePath":       "$GRN_PWM_PROFILE",
+                "withoutDuplicates": true,
+                "ignoreCore":        true,
+                "output":            "$GRN_MATCH_PATH"
+            },
+            "comment": "Step 9.5 Predict binding sites of GRN factors in TAL1-bound regions"
+        },
+        
+        {
+            "do":     "external",
+            "bin":    "python3",
+            "params": [
+                "$TAL1_GENE_SCRIPT"
+            ],
+            "comment": "Step 10.1 Run external script to prepare TAL1 gene table"
+        },
+        
+        {
+            "do": "imPort",
+            "file": "tal1.tsv",
+            "path": "$MEALR_OUTPUT_PATH",
+            "importer": "Tabular (*.txt, *.xls, *.tab, etc.)",
+            "parameters": {
+                "columnForID": "ID",
+                "tableType":   "Genes: Ensembl",
+                "species":     "Human (Homo sapiens)"
+            },
+            "comment": "Step 10.2 Import TAL1 gene table"
+        },
+        
+        {
+            "do": "external",
+            "showOutput": true,
+            "bin": "sh",
+            "params": ["$WAIT_SCRIPT"],
+            "comment": "Run external script to allow server process to finish before using imported data"
+        },
+        
+        {
+            "do":      "analyze",
+            "method":  "Gene set to track",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "sourcePath": "$TAL1_GENE_PATH",
+                "species":    "$SPECIES",
+                "from":       2000,
+                "to":         1000,
+                "destPath":   "$TAL1_TRACK_PATH"
+            },
+            "comment": "Step 10.3 Create track of genomic region around TAL1 TSS (promoter)"
+        },
+        
+        {
+            "do":      "analyze",
+            "method":  "TRANSFAC(R) Match(TM) for tracks",
+            "workflow": false,
+            "wait":     true,
+            "progress": true,
+            "parameters": {
+                "sequencePath":      "$TAL1_TRACK_PATH",
+                "dbSelector":        "$ENSEMBL_104_SELECTOR",
+                "profilePath":       "$GRN_PWM_PROFILE",
+                "withoutDuplicates": true,
+                "ignoreCore":        true,
+                "output":            "$TAL1_MATCH_PATH"
+            },
+            "comment": "Step 10.4 Predict binding sites of GRN factors in TAL1 promoter"
+        },
+        
+        {
+            "do":       "export",
+            "file":     "TAL1_grn_pwm_sites.bed",
+            "path":     "$TAL1_MATCH_PATH",
+            "exporter": "BED format (*.bed)",
+            "parameters": {},
+            "comment": "Step 10.5 Export genomic locations of predicted sites for GRN factors around TAL1 TSS"
+        }
+    ]
+}
+```

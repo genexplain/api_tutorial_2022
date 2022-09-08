@@ -1,0 +1,44 @@
+{
+    "server":          "https://platform.genexplain.com",
+    "user":            "someuser@email.io",
+    "password":        "12345",
+    "reconnect":       true,
+    "tasks": [
+        {
+            "do": "createFolder",
+            "showOutput": true,
+            "path": "data/Projects/api2022_tutorial/Data",
+            "name": "first_example_functional_class"
+        },
+        {
+            "do": "imPort",
+            "file": "../data/functional_classification_genes_GSE156063.tsv",
+            "path": "data/Projects/api2022_tutorial/Data/first_example_functional_class",
+            "importer": "Tabular (*.txt, *.xls, *.tab, etc.)",
+            "parameters": {
+                "columnForID": "ID",
+                "tableType":   "Genes: Ensembl",
+                "species":     "Human (Homo sapiens)"
+            }
+        },
+        {
+            "do": "external",
+            "showOutput": true,
+            "bin": "sh",
+            "params": ["waitns.sh"]
+        },
+        {
+            "do": "analyze",
+            "method": "Functional classification",
+            "verbose": true,
+            "parameters": {
+                "sourcePath": "data/Projects/api2022_tutorial/Data/first_example_functional_class/functional_classification_genes_GSE156063",
+                "species":    "Human (Homo sapiens)",
+                "bioHub":     "Full gene ontology classification",
+                "minHits":    1,
+                "pvalueThreshold": 1,
+                "outputTable": "data/Projects/api2022_tutorial/Data/first_example_functional_class/functional_classification_genes_GSE156063 GO"
+            }
+        }
+    ]
+}

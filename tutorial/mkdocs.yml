@@ -1,0 +1,27 @@
+site_name: 'Tutorial for geneXplain platform APIs 2022'
+theme: 
+    name: 'material'
+    palette:
+        primary: teal
+repo_url: https://github.com/genexplain/genexplain-api
+repo_name: GitHub
+site_description: geneXplain platform API tutorial 2022
+copyright: '&copy; 2022 geneXplain GmbH, Wolfenbuettel, Germany'
+site_author: pstegma
+extra_javascript: 
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+markdown_extensions:
+    - codehilite:
+        linenums: true
+    - mdx_math
+nav:
+  - Introduction: index.md
+  - A first example&#58; Enrichment of gene functions in a gene set: first_example.md
+  - Platform tools and parameters: basics.md
+  - Overview of APIs: api_overview.md
+  - Example workflow&#58; Analysis of ChIP-seq data:
+        - Analysis overview: chipseq_analysis_intro.md
+        - geneXplainR: chipseq_analysis_r.md
+        - Java program: chipseq_analysis_java.md
+        - JSON interface: chipseq_analysis_json.md
+  

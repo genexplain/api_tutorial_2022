@@ -1,0 +1,1389 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="geneXplain platform API tutorial 2022">
+      
+      
+      
+        <meta name="author" content="pstegma">
+      
+      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>geneXplainR - Tutorial for the geneXplain API 2022</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f72e892.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chip-seq-data-analysis-using-genexplainr" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="." title="Tutorial for the geneXplain API 2022" class="md-header-nav__button md-logo" aria-label="Tutorial for the geneXplain API 2022">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Tutorial for the geneXplain API 2022
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              geneXplainR
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/genexplain/genexplain-api/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Tutorial for the geneXplain API 2022" class="md-nav__button md-logo" aria-label="Tutorial for the geneXplain API 2022">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Tutorial for the geneXplain API 2022
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/genexplain/genexplain-api/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="index.html" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="first_example.html" class="md-nav__link">
+      A first example&#58; Enrichment of gene functions in a gene set
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="basics.html" class="md-nav__link">
+      Platform tools and parameters
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="api_overview.html" class="md-nav__link">
+      Overview of APIs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Example workflow&#58; Analysis of ChIP-seq data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Example workflow&#58; Analysis of ChIP-seq data" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Example workflow&#58; Analysis of ChIP-seq data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="chipseq_analysis_intro.html" class="md-nav__link">
+      Analysis overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        geneXplainR
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="chipseq_analysis_r.html" class="md-nav__link md-nav__link--active">
+      geneXplainR
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#r-code-for-the-tutorial" class="md-nav__link">
+    R code for the tutorial
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="chipseq_analysis_java.html" class="md-nav__link">
+      Java program
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="chipseq_analysis_json.html" class="md-nav__link">
+      JSON interface
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#r-code-for-the-tutorial" class="md-nav__link">
+    R code for the tutorial
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/genexplain/genexplain-api/edit/master/docs/chipseq_analysis_r.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chip-seq-data-analysis-using-genexplainr">ChIP-seq data analysis using geneXplainR</h1>
+<p>The <a href="#r-code-for-the-tutorial">R script below</a> implements the <a href="chipseq_analysis_intro.html">tutorial workflow</a>.
+The described steps are indicated in code comments for reference.</p>
+<p>The R code is provided with the tutorial material as <em>genexplain_tutorial_chipseq_analysis.R</em>.
+Please note that some parts require editing before running the script, including username, password,
+project name.</p>
+<h2 id="r-code-for-the-tutorial">R code for the tutorial</h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">geneXplainR</span><span class="p">)</span>
+
+<span class="c1"># Please note that for successful login, username and password have to</span>
+<span class="c1"># belong to a valid account on that server.</span>
+<span class="n">server</span>   <span class="o">&lt;-</span> <span class="s">&quot;https://platform.genexplain.com&quot;</span>
+<span class="n">user</span>     <span class="o">&lt;-</span> <span class="s">&quot;someuser@email.io&quot;</span>
+<span class="n">password</span> <span class="o">&lt;-</span> <span class="s">&quot;12345&quot;</span>
+
+<span class="nf">gx.login</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">apiProjectName</span> <span class="o">&lt;-</span> <span class="s">&quot;api2022_tutorial&quot;</span>
+<span class="n">apiProjectPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;data/Projects/&quot;</span><span class="p">,</span> <span class="n">apiProjectName</span><span class="p">)</span>
+
+<span class="c1"># Create a new platform project</span>
+<span class="c1"># This step should be conducted only once for a new project.</span>
+<span class="c1"># The gx.createProject function returns an error if the project</span>
+<span class="c1"># already exists.</span>
+<span class="nf">gx.createProject</span><span class="p">(</span><span class="n">apiProjectName</span><span class="p">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;API 2022 tutorial project&quot;</span><span class="p">)</span>
+
+<span class="n">folderPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">apiProjectPath</span><span class="p">,</span> <span class="s">&quot;/Data/chipseq_analysis_workflow&quot;</span><span class="p">)</span>
+
+<span class="c1"># Within a project, folders for data elements need to be created within the</span>
+<span class="c1"># &quot;Data&quot; folder or its subfolders.</span>
+<span class="nf">gx.createFolder</span><span class="p">(</span><span class="s">&quot;data/Projects/api2022_tutorial/Data&quot;</span><span class="p">,</span> <span class="s">&quot;chipseq_analysis_workflow&quot;</span><span class="p">)</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># Step 1. Import and mapping of TAL1-bound genomic regions</span>
+<span class="c1">#</span>
+
+<span class="c1"># Import the BED file with TAL1-bound regions into the destination folder</span>
+<span class="nf">gx.import</span><span class="p">(</span><span class="s">&quot;../data/GSM614003_jurkat.tal1.bed&quot;</span><span class="p">,</span> <span class="n">folderPath</span><span class="p">,</span> <span class="s">&quot;BED format (*.bed)&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">dbSelector</span> <span class="o">=</span> <span class="s">&quot;Ensembl 52.36n Human (hg18)&quot;</span><span class="p">))</span>
+
+<span class="c1"># After data imports it is recommendable to shortly pause in order to</span>
+<span class="c1"># allow server processes to finish before using the data</span>
+<span class="nf">Sys.sleep</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+
+<span class="nf">gx.analysis.parameters</span><span class="p">(</span><span class="s">&quot;liftOver1&quot;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="c1"># Output</span>
+<span class="c1">#                                                                       description</span>
+<span class="c1"># input                                                                            </span>
+<span class="c1"># mapping                                                                          </span>
+<span class="c1"># minMatch        Recommended values: same species = 0.95, different species = 0.10</span>
+<span class="c1"># multiple|choice    Recommended values: same species = No, different species = Yes</span>
+<span class="c1"># out_file1                                                                        </span>
+<span class="c1"># out_file2</span>
+<span class="c1">#</span>
+
+<span class="n">bedPath</span>      <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">folderPath</span><span class="p">,</span> <span class="s">&quot;/GSM614003_jurkat.tal1&quot;</span><span class="p">)</span>
+<span class="n">mappedPath</span>   <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">folderPath</span><span class="p">,</span> <span class="s">&quot;/jurkat_chipseq_hg38&quot;</span><span class="p">)</span>
+<span class="n">unmappedPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">folderPath</span><span class="p">,</span> <span class="s">&quot;/jurkat_chipseq_hg38_unmapped&quot;</span><span class="p">)</span>
+<span class="n">mapping</span>      <span class="o">&lt;-</span> <span class="s">&quot;hg18-&gt;hg38&quot;</span>
+
+<span class="c1"># Run Liftover to map hg18 coordinates to hg38</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;liftOver1&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">input</span> <span class="o">=</span> <span class="n">bedPath</span><span class="p">,</span> 
+                              <span class="n">mapping</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">,</span> 
+                              <span class="n">minMatch</span> <span class="o">=</span> <span class="m">0.95</span><span class="p">,</span> 
+                              <span class="n">out_file1</span> <span class="o">=</span> <span class="n">mappedPath</span><span class="p">,</span> 
+                              <span class="n">out_file2</span> <span class="o">=</span> <span class="n">unmappedPath</span><span class="p">),</span>
+            <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># Step 2. Mapping TAL1-bound genomic regions to nearby genes</span>
+<span class="c1">#</span>
+
+<span class="n">species</span> <span class="o">&lt;-</span> <span class="s">&quot;Human (Homo sapiens)&quot;</span>
+<span class="n">mappedGenePath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">mappedPath</span><span class="p">,</span> <span class="s">&quot; Genes&quot;</span><span class="p">)</span>
+
+<span class="c1"># Use gx.trackToGeneSet function to map genomic coordinates to genes</span>
+<span class="nf">gx.trackToGeneSet</span><span class="p">(</span><span class="n">mappedPath</span><span class="p">,</span> <span class="n">species</span><span class="p">,</span> <span class="m">-5000</span><span class="p">,</span> <span class="m">2000</span><span class="p">,</span> <span class="n">destPath</span> <span class="o">=</span> <span class="n">mappedGenePath</span><span class="p">)</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># Step 3. Functional enrichment analysis of genes near TAL1-bound regions</span>
+<span class="c1">#</span>
+
+<span class="c1"># Enrichment of genes associated with Gene Ontology terms using</span>
+<span class="c1"># &quot;Functional classification&quot;</span>
+<span class="n">funclassResultPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">mappedGenePath</span><span class="p">,</span><span class="s">&quot; GO&quot;</span><span class="p">)</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;Functional classification&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">sourcePath</span> <span class="o">=</span> <span class="n">mappedGenePath</span><span class="p">,</span>
+                                              <span class="n">species</span>    <span class="o">=</span> <span class="n">species</span><span class="p">,</span>
+                                              <span class="n">bioHub</span>     <span class="o">=</span> <span class="s">&quot;Full gene ontology classification&quot;</span><span class="p">,</span>
+                                              <span class="n">minHits</span>    <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+                                              <span class="n">pvalueThreshold</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+                                              <span class="n">outputTable</span> <span class="o">=</span> <span class="n">funclassResultPath</span><span class="p">),</span>
+           <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># Export analysis result to local file</span>
+<span class="c1"># The default exporter is for data tables, so that it is sufficient</span>
+<span class="c1"># to specify the data element path and the local output file</span>
+<span class="nf">gx.export</span><span class="p">(</span><span class="n">funclassResultPath</span><span class="p">,</span> <span class="n">target.file</span><span class="o">=</span><span class="s">&quot;functional_classification_result_GO.tsv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Enrichment of genes associated with Reactome pathways</span>
+<span class="n">funclassResultPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">mappedGenePath</span><span class="p">,</span><span class="s">&quot; Reactome&quot;</span><span class="p">)</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;Functional classification&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">sourcePath</span> <span class="o">=</span> <span class="n">mappedGenePath</span><span class="p">,</span>
+                                              <span class="n">species</span>    <span class="o">=</span> <span class="n">species</span><span class="p">,</span>
+                                              <span class="n">bioHub</span>     <span class="o">=</span> <span class="s">&quot;Reactome pathways (74)&quot;</span><span class="p">,</span>
+                                              <span class="n">minHits</span>    <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+                                              <span class="n">pvalueThreshold</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+                                              <span class="n">outputTable</span> <span class="o">=</span> <span class="n">funclassResultPath</span><span class="p">),</span>
+            <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># Export analysis result to local file</span>
+<span class="nf">gx.export</span><span class="p">(</span><span class="n">funclassResultPath</span><span class="p">,</span> <span class="n">target.file</span><span class="o">=</span><span class="s">&quot;functional_classification_result_Reactome.tsv&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Enrichment of genes associated with human diseases based on</span>
+<span class="c1"># HumanPSD disease biomarker annotation</span>
+<span class="n">funclassResultPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">mappedGenePath</span><span class="p">,</span><span class="s">&quot; Human disease biomarkers&quot;</span><span class="p">)</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;Functional classification&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">sourcePath</span> <span class="o">=</span> <span class="n">mappedGenePath</span><span class="p">,</span>
+                                              <span class="n">species</span>    <span class="o">=</span> <span class="n">species</span><span class="p">,</span>
+                                              <span class="n">bioHub</span>     <span class="o">=</span> <span class="s">&quot;HumanPSD(TM) disease (2022.1)&quot;</span><span class="p">,</span>
+                                              <span class="n">minHits</span>    <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+                                              <span class="n">pvalueThreshold</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+                                              <span class="n">outputTable</span> <span class="o">=</span> <span class="n">funclassResultPath</span><span class="p">),</span>
+            <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># Export analysis result to local file</span>
+<span class="nf">gx.export</span><span class="p">(</span><span class="n">funclassResultPath</span><span class="p">,</span> <span class="n">target.file</span><span class="o">=</span><span class="s">&quot;functional_classification_result_HumanPSD.tsv&quot;</span><span class="p">)</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># Step 4. Sampling genomic regions not bound by TAL1</span>
+<span class="c1">#</span>
+
+<span class="n">mealrBackgroundTrack</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">mappedPath</span><span class="p">,</span> <span class="s">&quot; random 1000&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create random track not overlapping with TAL1-bound regions</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;Create random track&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">inputTrackPath</span>      <span class="o">=</span> <span class="n">mappedPath</span><span class="p">,</span>
+                                        <span class="n">dbSelector</span>          <span class="o">=</span> <span class="s">&quot;Ensembl 104.38 Human (hg38)&quot;</span><span class="p">,</span>
+                                        <span class="n">species</span>             <span class="o">=</span> <span class="n">species</span><span class="p">,</span>
+                                        <span class="n">standardChromosomes</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+                                        <span class="n">seqNumber</span>           <span class="o">=</span> <span class="m">1000</span><span class="p">,</span>
+                                        <span class="n">seqLength</span>           <span class="o">=</span> <span class="m">0</span><span class="p">,</span>
+                                        <span class="n">from</span>                <span class="o">=</span> <span class="m">0</span><span class="p">,</span>
+                                        <span class="n">to</span>                  <span class="o">=</span> <span class="m">0</span><span class="p">,</span>
+                                        <span class="n">withOverlap</span>         <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>
+                                        <span class="n">randomShift</span>         <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>
+                                        <span class="n">outputTrackPath</span>     <span class="o">=</span> <span class="n">mealrBackgroundTrack</span><span class="p">,</span>
+                                        <span class="n">randSeed</span>            <span class="o">=</span> <span class="m">123</span><span class="p">),</span>
+            <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># Step 5. Import and mapping of TAL1 binding site subset</span>
+<span class="c1">#</span>
+
+<span class="c1">#</span>
+<span class="c1"># Data upload and lifting as in Step 1 for 1000 TAL1 sites sampled</span>
+<span class="c1"># from the original BED file</span>
+<span class="nf">gx.import</span><span class="p">(</span><span class="s">&quot;../data/GSM614003_jurkat.tal1_1000.bed&quot;</span><span class="p">,</span> <span class="n">folderPath</span><span class="p">,</span> <span class="s">&quot;BED format (*.bed)&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">dbSelector</span> <span class="o">=</span> <span class="s">&quot;Ensembl 52.36n Human (hg18)&quot;</span><span class="p">))</span>
+
+<span class="c1"># After data imports it is recommendable to shortly pause in order to</span>
+<span class="c1"># allow server processes to finish before using the data</span>
+<span class="nf">Sys.sleep</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+
+<span class="n">bedPath</span>      <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">folderPath</span><span class="p">,</span> <span class="s">&quot;/GSM614003_jurkat.tal1_1000&quot;</span><span class="p">)</span>
+<span class="n">mappedPath</span>   <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">folderPath</span><span class="p">,</span> <span class="s">&quot;/jurkat_chipseq_hg38_1000&quot;</span><span class="p">)</span>
+<span class="n">unmappedPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">folderPath</span><span class="p">,</span> <span class="s">&quot;/jurkat_chipseq_hg38_1000_unmapped&quot;</span><span class="p">)</span>
+
+<span class="c1"># Map hg18 coordinates to hg38</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;liftOver1&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">input</span> <span class="o">=</span> <span class="n">bedPath</span><span class="p">,</span> 
+                              <span class="n">mapping</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">,</span> 
+                              <span class="n">minMatch</span> <span class="o">=</span> <span class="m">0.95</span><span class="p">,</span> 
+                              <span class="n">out_file1</span> <span class="o">=</span> <span class="n">mappedPath</span><span class="p">,</span> 
+                              <span class="n">out_file2</span> <span class="o">=</span> <span class="n">unmappedPath</span><span class="p">),</span>
+            <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># Step 6. Selection of important PWM models using MEALR</span>
+<span class="c1">#</span>
+
+<span class="nf">gx.analysis.parameters</span><span class="p">(</span><span class="s">&quot;MEALR (tracks)&quot;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="c1"># Output</span>
+<span class="c1">#                                                                                              description</span>
+<span class="c1"># yesSetPath                                                Study track / Track with intervals of interest</span>
+<span class="c1"># noSetPath                                                Background track / Track of non-bound intervals</span>
+<span class="c1"># dbSelector                                                   Select a deployed or custom sequence source</span>
+<span class="c1"># profilePath                                                                   Profile of weight matrices</span>
+<span class="c1"># maxPosCoef      Maximum number of positive coefficients (motifs of factors with positive binding effect)</span>
+<span class="c1"># maxComplexity                                                    Maximal complexity paramater to explore</span>
+<span class="c1"># complexityInc                                         Step-size of incrementing the complexity parameter</span>
+<span class="c1"># maxUnimproved                                     Maximal number of iterations without improved accuracy</span>
+<span class="c1"># scoresWithNoSet                                   Include scores for No sequences in score table outputs</span>
+<span class="c1"># output                                                                                Output folder path</span>
+<span class="c1">#</span>
+
+<span class="n">mealrOutputPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">mappedPath</span><span class="p">,</span> <span class="s">&quot; MEALR&quot;</span><span class="p">)</span>
+<span class="n">transfacProfile</span> <span class="o">&lt;-</span> <span class="s">&quot;databases/TRANSFAC(R) 2022.1/Data/profiles/vertebrate_human_p0.05_non3d&quot;</span>
+
+<span class="c1"># Analyze target and background genomic regions using MEALR</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;MEALR (tracks)&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">yesSetPath</span>      <span class="o">=</span> <span class="n">mappedPath</span><span class="p">,</span>
+                                   <span class="n">noSetPath</span>       <span class="o">=</span> <span class="n">mealrBackgroundTrack</span><span class="p">,</span>
+                                   <span class="n">dbSelector</span>      <span class="o">=</span> <span class="s">&quot;Ensembl 104.38 Human (hg38)&quot;</span><span class="p">,</span>
+                                   <span class="n">profilePath</span>     <span class="o">=</span> <span class="n">transfacProfile</span><span class="p">,</span>
+                                   <span class="n">maxPosCoef</span>      <span class="o">=</span> <span class="m">150</span><span class="p">,</span>
+                                   <span class="n">maxComplexity</span>   <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span>
+                                   <span class="n">complexityInc</span>   <span class="o">=</span> <span class="m">0.02</span><span class="p">,</span>
+                                   <span class="n">maxUnimproved</span>   <span class="o">=</span> <span class="m">20</span><span class="p">,</span>
+                                   <span class="n">scoresWithNoSet</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>
+                                   <span class="n">output</span>          <span class="o">=</span> <span class="n">mealrOutputPath</span><span class="p">),</span>
+            <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># Step 7. Extraction of binding transcription factors</span>
+<span class="c1">#</span>
+
+<span class="nf">gx.analysis.parameters</span><span class="p">(</span><span class="s">&quot;Select top rows&quot;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="c1"># Output</span>
+<span class="c1">#                        description</span>
+<span class="c1"># inputTable             Input table</span>
+<span class="c1"># column                      Column</span>
+<span class="c1"># types                         Type</span>
+<span class="c1"># topPercent             Top percent</span>
+<span class="c1"># topCount             Top max count</span>
+<span class="c1"># topMinCount          Top min count</span>
+<span class="c1"># topTable          Top table output</span>
+<span class="c1"># middlePercent       Middle percent</span>
+<span class="c1"># middleCount       Middle max count</span>
+<span class="c1"># middleMinCount    Middle min count</span>
+<span class="c1"># middleTable    Middle table output</span>
+<span class="c1"># bottomPercent       Bottom percent</span>
+<span class="c1"># bottomCount       Bottom max count</span>
+<span class="c1"># bottomMinCount    Bottom min count</span>
+<span class="c1"># bottomTable    Bottom table output</span>
+<span class="c1">#</span>
+
+<span class="n">mealrMotifPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">mealrOutputPath</span><span class="p">,</span> <span class="s">&quot;/MEALR_positive_coefficients&quot;</span><span class="p">)</span>
+<span class="n">mealrTopPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">mealrMotifPath</span><span class="p">,</span> <span class="s">&quot; Top 50&quot;</span><span class="p">)</span>
+
+<span class="c1"># Extract top 50 PWMs ranked by logistic regression coefficient</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;Select top rows&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">inputTable</span>  <span class="o">=</span> <span class="n">mealrMotifPath</span><span class="p">,</span>
+                                    <span class="n">column</span>      <span class="o">=</span> <span class="s">&quot;Coefficient&quot;</span><span class="p">,</span>
+                                    <span class="n">topPercent</span>  <span class="o">=</span> <span class="m">100.0</span><span class="p">,</span>
+                                    <span class="n">topCount</span>    <span class="o">=</span> <span class="m">50</span><span class="p">,</span>
+                                    <span class="n">topMinCount</span> <span class="o">=</span> <span class="m">50</span><span class="p">,</span>
+                                    <span class="n">topTable</span>    <span class="o">=</span> <span class="n">mealrTopPath</span><span class="p">),</span>
+            <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="nf">gx.analysis.parameters</span><span class="p">(</span><span class="s">&quot;Matrices to molecules&quot;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="c1"># Output</span>
+<span class="c1">#                                                                                                                                         description</span>
+<span class="c1"># sitesCollection                          Select table with the results of &quot;Site search on gene set&quot;. Such table contains site model ID in each row.</span>
+<span class="c1"># siteModelsCollection                     Select the profile that was used for site search. In most of the cases, profile is selected automatically.</span>
+<span class="c1"># species                               Select arabidopsis, nematoda, zebrafish, fruit fly, human, mouse, rat, baker s yeast or fission yeast species</span>
+<span class="c1"># targetType                                                                                       Select type of identifiers for the resulting table</span>
+<span class="c1"># ignoreNaNInAggregator                                                                                    Ignore empty values during aggregator work</span>
+<span class="c1"># aggregator            Select one of the rules to treat values in the numerical columns of the table when several rows are merged into a single one.</span>
+<span class="c1"># columnName                                                        Select the column with numerical values to apply one of the rules described above</span>
+<span class="c1"># outputTable                                                                                           Path to store the resulting table in the tree</span>
+<span class="c1">#</span>
+
+<span class="n">mealrTopGenePath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">mealrTopPath</span><span class="p">,</span> <span class="s">&quot; Genes&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert PWMs to factor genes</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;Matrices to molecules&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">sitesCollection</span>       <span class="o">=</span> <span class="n">mealrTopPath</span><span class="p">,</span>
+                                          <span class="n">siteModelsCollection</span>  <span class="o">=</span> <span class="n">transfacProfile</span><span class="p">,</span>
+                                          <span class="n">species</span>               <span class="o">=</span> <span class="n">species</span><span class="p">,</span>
+                                          <span class="n">targetType</span>            <span class="o">=</span> <span class="s">&quot;Genes: Ensembl&quot;</span><span class="p">,</span>
+                                          <span class="n">outputTable</span>           <span class="o">=</span> <span class="n">mealrTopGenePath</span><span class="p">),</span>
+            <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># Step 8. Intersection of potentially TAL1-regulated genes and MEALR TFs</span>
+<span class="c1">#</span>
+
+<span class="nf">gx.analysis.parameters</span><span class="p">(</span><span class="s">&quot;Venn diagrams&quot;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="c1"># Output</span>
+<span class="c1">#                                                                           description</span>
+<span class="c1"># table1Path                         Table which will be represented as left-top circle</span>
+<span class="c1"># table1Name     Name for the left table on the diagram (leave empty to use table name)</span>
+<span class="c1"># circle1Color                             Color for the left-top circle on the diagram</span>
+<span class="c1"># table2Path                        Table which will be represented as right-top circle</span>
+<span class="c1"># table2Name    Name for the right table on the diagram (leave empty to use table name)</span>
+<span class="c1"># circle2Color                            Color for the right-top circle on the diagram</span>
+<span class="c1"># table3Path                    Table which will be represented as center-bottom circle</span>
+<span class="c1"># table3Name   Name for the center table on the diagram (leave empty to use table name)</span>
+<span class="c1"># circle3Color                        Color for the center-bottom circle on the diagram</span>
+<span class="c1"># simple                                                   All circles has equal radius</span>
+<span class="c1"># output                                               Folder name to store the results</span>
+<span class="c1">#</span>
+
+<span class="n">mappedNearbyGenePath</span>   <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">folderPath</span><span class="p">,</span> <span class="s">&quot;/jurkat_chipseq_hg38 Genes&quot;</span><span class="p">)</span>
+<span class="n">mealrTopVennPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">mealrTopPath</span><span class="p">,</span> <span class="s">&quot; Venn&quot;</span><span class="p">)</span>
+
+<span class="c1"># Intersect factors identified by MEALR and genes with nearby TAL1 ChIP-seq</span>
+<span class="c1"># sites</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;Venn diagrams&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">table1Path</span>   <span class="o">=</span> <span class="n">mappedNearbyGenePath</span><span class="p">,</span>
+                                  <span class="n">table1Name</span>   <span class="o">=</span> <span class="s">&quot;Genes near TAL1 sites&quot;</span><span class="p">,</span>
+                                  <span class="n">table2Path</span>   <span class="o">=</span> <span class="n">mealrTopGenePath</span><span class="p">,</span>
+                                  <span class="n">table2Name</span>   <span class="o">=</span> <span class="s">&quot;MEALR transcription factors&quot;</span><span class="p">,</span>
+                                  <span class="n">simple</span>       <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+                                  <span class="n">output</span>       <span class="o">=</span> <span class="n">mealrTopVennPath</span><span class="p">),</span>
+            <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># Step 9. Prediction of binding sites of identified TFs in TAL1-bound genomic regions</span>
+<span class="c1">#</span>
+
+<span class="n">grnFactorPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">mealrTopVennPath</span><span class="p">,</span> <span class="s">&quot;/Rows present in both tables&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load potential GRN factors into R data frame</span>
+<span class="n">tfs</span> <span class="o">&lt;-</span> <span class="nf">gx.get</span><span class="p">(</span><span class="n">grnFactorPath</span><span class="p">)</span>
+<span class="c1"># tfs</span>
+<span class="c1">#                 Gene symbol jurkat_chipseq_hg38: Count</span>
+<span class="c1"># ENSG00000081059        TCF7                          1</span>
+<span class="c1"># ENSG00000118513         MYB                          1</span>
+<span class="c1"># ENSG00000124813       RUNX2                          4</span>
+<span class="c1"># ENSG00000125952         MAX                          2</span>
+<span class="c1"># ENSG00000138795        LEF1                          2</span>
+<span class="c1"># ENSG00000157554         ERG                          1</span>
+<span class="c1"># ENSG00000159216       RUNX1                          4</span>
+<span class="c1"># ENSG00000179348       GATA2                          1</span>
+<span class="c1">#                                            Site model ID Coefficient</span>
+<span class="c1"># ENSG00000081059                                V$TCF1_09  0.05875131</span>
+<span class="c1"># ENSG00000118513                                V$CMYB_01  0.02749087</span>
+<span class="c1"># ENSG00000124813 V$AML_Q6,V$OSF2_Q6,V$RUNX2_03,V$RUNX2_04  0.08663064</span>
+<span class="c1"># ENSG00000125952                              V$MYCMAX_01  0.02998472</span>
+<span class="c1"># ENSG00000138795                      V$LEF1_10,V$LEF1_17  0.03285110</span>
+<span class="c1"># ENSG00000157554                                 V$ERG_07  0.04488260</span>
+<span class="c1"># ENSG00000159216                       V$AML1_02,V$AML_Q6  0.08663064</span>
+<span class="c1"># ENSG00000179348                               V$GATA2_09  0.04911769</span>
+<span class="c1">#</span>
+
+<span class="c1"># Extract PWM ids</span>
+<span class="n">grnPwms</span> <span class="o">&lt;-</span> <span class="nf">unlist</span><span class="p">(</span><span class="nf">strsplit</span><span class="p">(</span><span class="n">tfs</span><span class="p">[,</span><span class="m">3</span><span class="p">],</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">fixed</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+
+<span class="c1"># Create PWM table for import</span>
+<span class="nf">write.table</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="n">PWM</span> <span class="o">=</span> <span class="n">grnPwms</span><span class="p">,</span> <span class="n">Num</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">grnPwms</span><span class="p">)),</span> <span class="n">file</span> <span class="o">=</span> <span class="s">&quot;grn_pwms.tsv&quot;</span><span class="p">,</span> <span class="n">quote</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;\t&quot;</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+
+<span class="c1"># Import PWM table</span>
+<span class="nf">gx.importTable</span><span class="p">(</span><span class="s">&quot;grn_pwms.tsv&quot;</span><span class="p">,</span> <span class="n">mealrOutputPath</span><span class="p">,</span> 
+               <span class="s">&quot;MEALR_positive_coefficients Top 50 GRN PWMs&quot;</span><span class="p">,</span> <span class="n">columnForID</span> <span class="o">=</span> <span class="s">&quot;PWM&quot;</span><span class="p">,</span> 
+               <span class="n">tableType</span> <span class="o">=</span> <span class="s">&quot;Matrices: TRANSFAC&quot;</span><span class="p">,</span> <span class="n">species</span> <span class="o">=</span> <span class="n">species</span><span class="p">)</span>
+
+<span class="c1"># After data imports it is recommendable to shortly pause in order to</span>
+<span class="c1"># allow server processes to finish before using the data</span>
+<span class="nf">Sys.sleep</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+
+<span class="n">grnPwmPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">mealrOutputPath</span><span class="p">,</span> <span class="s">&quot;/MEALR_positive_coefficients Top 50 GRN PWMs&quot;</span><span class="p">)</span>
+
+<span class="nf">gx.analysis.parameters</span><span class="p">(</span><span class="s">&quot;Create profile from site model table&quot;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="c1"># Output</span>
+<span class="c1">#                                                                                    description</span>
+<span class="c1"># table                                                Table containing site models as row names</span>
+<span class="c1"># profile                                                        Profile to copy the values from</span>
+<span class="c1"># thresholdsColumn Column containing cutoff values (use &#39;none&#39; to copy cutoffs from the profile)</span>
+<span class="c1"># outputProfile                                 Specify the path whether to store output profile</span>
+<span class="c1">#</span>
+
+<span class="n">transfacProfile</span> <span class="o">&lt;-</span> <span class="s">&quot;databases/TRANSFAC(R) 2022.1/Data/profiles/vertebrate_human_p0.001_non3d&quot;</span>
+<span class="n">grnPwmProfile</span>   <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">grnPwmPath</span><span class="p">,</span> <span class="s">&quot; profile&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create Match(TM) profile for PWMs of potential GRN factors</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;Create profile from site model table&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">table</span>   <span class="o">=</span> <span class="n">grnPwmPath</span><span class="p">,</span>
+                                                         <span class="n">profile</span> <span class="o">=</span> <span class="n">transfacProfile</span><span class="p">,</span>
+                                                         <span class="n">outputProfile</span> <span class="o">=</span> <span class="n">grnPwmProfile</span><span class="p">),</span>
+            <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="nf">gx.analysis.parameters</span><span class="p">(</span><span class="s">&quot;TRANSFAC(R) Match(TM) for tracks&quot;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="c1"># Output</span>
+<span class="c1">#                                                                         description</span>
+<span class="c1"># sequencePath                                               Sequence track to search</span>
+<span class="c1"># dbSelector                              Select a deployed or custom sequence source</span>
+<span class="c1"># profilePath                                                                 Profile</span>
+<span class="c1"># withoutDuplicates Ensure to report sites in overlapping genomic intervals only once</span>
+<span class="c1"># ignoreCore               Core scores are not calculated and not used for filtering.</span>
+<span class="c1"># output                                                            Output track path</span>
+<span class="c1">#</span>
+
+<span class="n">grnMatchPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">grnPwmProfile</span><span class="p">,</span> <span class="s">&quot; Match&quot;</span><span class="p">)</span>
+
+<span class="c1"># Predict binding sites of GRN factors in TAL1-bound regions</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;TRANSFAC(R) Match(TM) for tracks&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">sequencePath</span> <span class="o">=</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">folderPath</span><span class="p">,</span> <span class="s">&quot;/jurkat_chipseq_hg38&quot;</span><span class="p">),</span>
+                                                     <span class="n">dbSelector</span>   <span class="o">=</span> <span class="s">&quot;Ensembl 104.38 Human (hg38)&quot;</span><span class="p">,</span>
+                                                     <span class="n">profilePath</span>  <span class="o">=</span> <span class="n">grnPwmProfile</span><span class="p">,</span>
+                                                     <span class="n">withoutDuplicates</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+                                                     <span class="n">ignoreCore</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+                                                     <span class="n">output</span> <span class="o">=</span> <span class="n">grnMatchPath</span><span class="p">),</span>
+            <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># Step 10. Prediction of binding sites of identified TFs around TAL1 transcription start site</span>
+<span class="c1">#</span>
+
+<span class="c1"># Create TAL1 gene table for import</span>
+<span class="nf">write.table</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="n">ID</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;ENSG00000162367&quot;</span><span class="p">),</span> <span class="n">Symbol</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;TAL1&quot;</span><span class="p">)),</span> <span class="n">file</span> <span class="o">=</span> <span class="s">&quot;tal1.tsv&quot;</span><span class="p">,</span> <span class="n">quote</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;\t&quot;</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+
+<span class="c1"># Import TAL1 gene</span>
+<span class="nf">gx.importTable</span><span class="p">(</span><span class="s">&quot;tal1.tsv&quot;</span><span class="p">,</span> <span class="n">mealrOutputPath</span><span class="p">,</span>
+               <span class="s">&quot;TAL1 gene&quot;</span><span class="p">,</span> <span class="n">columnForID</span> <span class="o">=</span> <span class="s">&quot;ID&quot;</span><span class="p">,</span> 
+               <span class="n">tableType</span> <span class="o">=</span> <span class="s">&quot;Genes: Ensembl&quot;</span><span class="p">,</span> <span class="n">species</span> <span class="o">=</span> <span class="n">species</span><span class="p">)</span>
+
+<span class="c1"># After data imports it is recommendable to shortly pause in order to</span>
+<span class="c1"># allow server processes to finish before using the data</span>
+<span class="nf">Sys.sleep</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+
+<span class="n">tal1GenePath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">mealrOutputPath</span><span class="p">,</span> <span class="s">&quot;/TAL1 gene&quot;</span><span class="p">)</span>
+
+<span class="nf">gx.analysis.parameters</span><span class="p">(</span><span class="s">&quot;Gene set to track&quot;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="c1"># Output</span>
+<span class="c1">#                                                      description</span>
+<span class="c1"># sourcePath                                 Table of source genes</span>
+<span class="c1"># species                                      Taxonomical species</span>
+<span class="c1"># from                      From position (relative to gene start)</span>
+<span class="c1"># to                          To position (relative to gene start)</span>
+<span class="c1"># overlapMergingMode How to handle TSS located close to each other</span>
+<span class="c1"># destPath                                             Output name</span>
+<span class="c1">#</span>
+
+<span class="n">tal1TrackPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">tal1GenePath</span><span class="p">,</span> <span class="s">&quot; promoter&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create track of genomic region around TAL1 TSS (promoter)</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;Gene set to track&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">sourcePath</span> <span class="o">=</span> <span class="n">tal1GenePath</span><span class="p">,</span>
+                                      <span class="n">species</span>    <span class="o">=</span> <span class="n">species</span><span class="p">,</span>
+                                      <span class="n">from</span>       <span class="o">=</span> <span class="m">2000</span><span class="p">,</span>
+                                      <span class="n">to</span>         <span class="o">=</span> <span class="m">1000</span><span class="p">,</span>
+                                      <span class="n">destPath</span>   <span class="o">=</span> <span class="n">tal1TrackPath</span><span class="p">),</span>
+            <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="n">tal1MatchPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">grnPwmProfile</span><span class="p">,</span> <span class="s">&quot; TAL1 Match&quot;</span><span class="p">)</span>
+
+<span class="c1"># Predict binding sites of GRN factors in TAL1 promoter</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;TRANSFAC(R) Match(TM) for tracks&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">sequencePath</span> <span class="o">=</span> <span class="n">tal1TrackPath</span><span class="p">,</span>
+                                                     <span class="n">dbSelector</span>   <span class="o">=</span> <span class="s">&quot;Ensembl 104.38 Human (hg38)&quot;</span><span class="p">,</span>
+                                                     <span class="n">profilePath</span>  <span class="o">=</span> <span class="n">grnPwmProfile</span><span class="p">,</span>
+                                                     <span class="n">withoutDuplicates</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+                                                     <span class="n">ignoreCore</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+                                                     <span class="n">output</span> <span class="o">=</span> <span class="n">tal1MatchPath</span><span class="p">),</span>
+            <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># Export genomic locations of predicted sites for GRN factors around TAL1 TSS</span>
+<span class="nf">gx.export</span><span class="p">(</span><span class="n">tal1MatchPath</span><span class="p">,</span> <span class="n">exporter</span> <span class="o">=</span> <span class="s">&quot;BED format (*.bed)&quot;</span><span class="p">,</span> <span class="n">target.file</span><span class="o">=</span><span class="s">&quot;TAL1_grn_pwm_sites.bed&quot;</span><span class="p">)</span>
+
+<span class="nf">gx.logout</span><span class="p">()</span>
+</code></pre></div>
+</td></tr></table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="chipseq_analysis_intro.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Analysis overview
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="chipseq_analysis_java.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Java program
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            &copy; 2022 geneXplain GmbH, Wolfenbuettel, Germany
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: ".",
+          features: [],
+          search: Object.assign({
+            worker: "assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>

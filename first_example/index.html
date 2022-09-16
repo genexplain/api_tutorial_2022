@@ -1,0 +1,1711 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="geneXplain platform API tutorial 2022">
+      
+      
+      
+        <meta name="author" content="pstegma">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>A first example: Enrichment of gene functions in a gene set - Tutorial for geneXplain platform APIs 2022</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a-first-example-analysis-enrichment-of-gene-functions-in-a-gene-set" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Tutorial for geneXplain platform APIs 2022" class="md-header-nav__button md-logo" aria-label="Tutorial for geneXplain platform APIs 2022">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Tutorial for geneXplain platform APIs 2022
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              A first example&#58; Enrichment of gene functions in a gene set
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/genexplain/api_tutorial_2022/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Tutorial for geneXplain platform APIs 2022" class="md-nav__button md-logo" aria-label="Tutorial for geneXplain platform APIs 2022">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Tutorial for geneXplain platform APIs 2022
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/genexplain/api_tutorial_2022/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        A first example&#58; Enrichment of gene functions in a gene set
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      A first example&#58; Enrichment of gene functions in a gene set
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-overview" class="md-nav__link">
+    Example overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-tool-parameters" class="md-nav__link">
+    Platform tool parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Platform tool parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#output-for-the-functional-classification-tool" class="md-nav__link">
+    Output for the Functional classification tool
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-classification-using-genexplainr" class="md-nav__link">
+    Functional classification using geneXplainR
+  </a>
+  
+    <nav class="md-nav" aria-label="Functional classification using geneXplainR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#folder-preparation" class="md-nav__link">
+    Folder preparation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-upload" class="md-nav__link">
+    Data upload
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functional-classification" class="md-nav__link">
+    Functional classification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-classification-using-genexplain-api" class="md-nav__link">
+    Functional classification using genexplain-api
+  </a>
+  
+    <nav class="md-nav" aria-label="Functional classification using genexplain-api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getting-importer-types-and-platform-tool-parameters" class="md-nav__link">
+    Getting importer types and platform tool parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java-program-for-functional-classification" class="md-nav__link">
+    Java program for functional classification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-classification-using-the-commandline" class="md-nav__link">
+    Functional classification using the commandline
+  </a>
+  
+    <nav class="md-nav" aria-label="Functional classification using the commandline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commandline-and-json" class="md-nav__link">
+    Commandline and JSON
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-configuration-file-for-functional-classification" class="md-nav__link">
+    JSON configuration file for functional classification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../basics/" class="md-nav__link">
+      Platform tools and parameters
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../api_overview/" class="md-nav__link">
+      Overview of APIs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Example workflow&#58; Analysis of ChIP-seq data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Example workflow&#58; Analysis of ChIP-seq data" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Example workflow&#58; Analysis of ChIP-seq data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../chipseq_analysis_intro/" class="md-nav__link">
+      Analysis overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../chipseq_analysis_r/" class="md-nav__link">
+      geneXplainR
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../chipseq_analysis_java/" class="md-nav__link">
+      Java program
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../chipseq_analysis_json/" class="md-nav__link">
+      JSON interface
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-overview" class="md-nav__link">
+    Example overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-tool-parameters" class="md-nav__link">
+    Platform tool parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Platform tool parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#output-for-the-functional-classification-tool" class="md-nav__link">
+    Output for the Functional classification tool
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-classification-using-genexplainr" class="md-nav__link">
+    Functional classification using geneXplainR
+  </a>
+  
+    <nav class="md-nav" aria-label="Functional classification using geneXplainR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#folder-preparation" class="md-nav__link">
+    Folder preparation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-upload" class="md-nav__link">
+    Data upload
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functional-classification" class="md-nav__link">
+    Functional classification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-classification-using-genexplain-api" class="md-nav__link">
+    Functional classification using genexplain-api
+  </a>
+  
+    <nav class="md-nav" aria-label="Functional classification using genexplain-api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getting-importer-types-and-platform-tool-parameters" class="md-nav__link">
+    Getting importer types and platform tool parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java-program-for-functional-classification" class="md-nav__link">
+    Java program for functional classification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-classification-using-the-commandline" class="md-nav__link">
+    Functional classification using the commandline
+  </a>
+  
+    <nav class="md-nav" aria-label="Functional classification using the commandline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commandline-and-json" class="md-nav__link">
+    Commandline and JSON
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-configuration-file-for-functional-classification" class="md-nav__link">
+    JSON configuration file for functional classification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/genexplain/api_tutorial_2022/edit/master/docs/first_example.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="a-first-example-analysis-enrichment-of-gene-functions-in-a-gene-set">A first example analysis - Enrichment of gene functions in a gene set</h1>
+<h2 id="example-overview">Example overview</h2>
+<p>The analysis consists of the following steps.</p>
+<ol>
+<li>Prepare a project and a data folder in the platform workspace as a container for analysis data and results</li>
+<li>Upload a gene set</li>
+<li>Analyze enrichment of gene function using the <em>Functional classification</em> tool</li>
+</ol>
+<h2 id="platform-tool-parameters">Platform tool parameters</h2>
+<p>Platform tools typically require a set of input parameters, e.g. path of input data, a path for
+result output, species selection. The APIs provide functions to gather information about
+available input options for analysis tools as well as for import and export functions.</p>
+<p>Here we show how to use the <em>genexplain-api</em> commandline tool <a href="../api_overview/#parameters-parameter-descriptions-for-platform-and-galaxy-tools"><em>parameters</em></a> to obtain information
+about the <em>Functional classification</em> platform tool that is going to be applied to calculate
+gene functional enrichment in this example analysis.</p>
+<p>The console command to run the tool looks as follows. The command invokes the <em>jar</em> package of
+genexplain-api with the name of the <em>parameters</em> tool followed by the path of a JSON file.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>java -jar genexplain-api.jar parameters funclass_parameter_listing.json
+</code></pre></div>
+</td></tr></table>
+
+<p>The JSON file contains a single JSON object with four properties <em>server</em>, <em>user</em>, <em>password</em> and
+<em>tools</em>. The first three properties configure the platform server to connect with as well as username
+and password which need to be replaced with valid account credentials on that server. The <em>tools</em>
+list contains the name(s) of platform tools for which the program shall fetch parameter information.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;server&quot;</span><span class="p">:</span>          <span class="s2">&quot;https://platform.genexplain.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;user&quot;</span><span class="p">:</span>            <span class="s2">&quot;someuser@email.io&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;password&quot;</span><span class="p">:</span>        <span class="s2">&quot;12345&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;tools&quot;</span><span class="p">:</span>           <span class="p">[</span><span class="s2">&quot;Functional classification&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>The <a href="#output-for-the-functional-classification-tool">output</a> is printed to standard output (optionally, an additional JSON parameter <code>outfile</code> can
+be provided to specify a local output file) and is (partially) shown below. It consists of a JSON object with
+one property for each platform tool that was specified in the <em>tools</em> list.</p>
+<p>The input options of a platform tool are contained in a JSON array, each represented by an object describing
+the input option. The order of input parameters in this array is the same as in the graphical web interface.</p>
+<p>The <code>displayName</code> property shows the parameter title that appears in the graphical web interface. However,
+the parameter name that needs to be specified in an API call is the <code>name</code> property.
+E.g. the first parameter with <code>displayName</code> <em>Source data set</em> has the <code>name</code> <em>sourcePath</em>. The latter
+needs to be used in function calls.</p>
+<p>An input option object provides further valuable information such as the type of data that is expected. E.g.
+the <em>Source data set</em> needs to be provided as a <code>type</code> <em>data-element-path</em>, which means a path for a
+data element in the platform workspace, the data element on that path must be a table (<code>elementClass</code> <em>...TableDataCollection</em>),
+and the table row names must be <a href="https://ensembl.org">Ensembl</a> ids.</p>
+<p>If an input option expects a value from a predefined list, the available values to select are also listed.
+E.g. the second option <em>Species</em> expects one of the species strings listed in <code>dictionary</code> and the
+default value is given in <code>value</code> (<em>Human (Homo sapiens)</em>).</p>
+<p>The <em>geneXplainR</em> method to fetch parameter information for platform tools is implemented in the
+function <code>gx.analysis.parameters</code>. However, the <em>parameters</em> commandline tool provides more details
+about each input option. Therefore, we recommend its use also for geneXplainR projects.</p>
+<h3 id="output-for-the-functional-classification-tool">Output for the Functional classification tool</h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;Functional classification&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;Source data set&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;icon&quot;</span><span class="p">:</span> <span class="s2">&quot;biouml.plugins.ensembl:biouml/plugins/ensembl/tabletype/resources/genes-ensembl.gif&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Input table having Ensembl genes as rows.&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;referenceType&quot;</span><span class="p">:</span> <span class="s2">&quot;Genes: Ensembl&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;readOnly&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;data-element-path&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;canBeNull&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;promptOverwrite&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;sourcePath&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;elementClass&quot;</span><span class="p">:</span> <span class="s2">&quot;ru.biosoft.table.TableDataCollection&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;(select element)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;elementMustExist&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;multiSelect&quot;</span><span class="p">:</span> <span class="kc">false</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;dictionary&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;Human (Homo sapiens)&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Human (Homo sapiens)&quot;</span>
+                <span class="p">],</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;Mouse (Mus musculus)&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Mouse (Mus musculus)&quot;</span>
+                <span class="p">],</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;Rat (Rattus norvegicus)&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Rat (Rattus norvegicus)&quot;</span>
+                <span class="p">],</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;Baker&#39;s yeast (Saccharomyces cerevisiae)&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Baker&#39;s yeast (Saccharomyces cerevisiae)&quot;</span>
+                <span class="p">],</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;Fission yeast (Schizosaccharomyces pombe)&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Fission yeast (Schizosaccharomyces pombe)&quot;</span>
+                <span class="p">]</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;Species&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;species&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Species corresponding to the input table.&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;readOnly&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;code-string&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Human (Homo sapiens)&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;dictionary&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;Full gene ontology classification&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Full gene ontology classification&quot;</span>
+                <span class="p">],</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;GO (biological process)&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;GO (biological process)&quot;</span>
+                <span class="p">],</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;GO (cellular component)&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;GO (cellular component)&quot;</span>
+                <span class="p">],</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;GO (molecular function)&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;GO (molecular function)&quot;</span>
+                <span class="p">],</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;HumanCyc pathways&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;HumanCyc pathways&quot;</span>
+                <span class="p">],</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;HumanPSD(TM) GO (biological process) (2022.1)&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;HumanPSD(TM) GO (biological process) (2022.1)&quot;</span>
+                <span class="p">],</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;HumanPSD(TM) disease (2022.1)&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;HumanPSD(TM) disease (2022.1)&quot;</span>
+                <span class="p">],</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;Reactome pathways (74)&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Reactome pathways (74)&quot;</span>
+                <span class="p">],</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;TF classification&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;TF classification&quot;</span>
+                <span class="p">],</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;TRANSPATH Pathways (2022.1)&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;TRANSPATH Pathways (2022.1)&quot;</span>
+                <span class="p">],</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;Repository folder&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Repository folder&quot;</span>
+                <span class="p">]</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;Classification&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;bioHub&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Classification you want to use. List of classifications may differ depending on software version and your subscription. Use &#39;Repository folder&#39; for custom classification.&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;readOnly&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;code-string&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Full gene ontology classification&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;Minimal hits to group&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;minHits&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Groups with lower number of hits will be filtered out (nmin)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;readOnly&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;code-string&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;Only over-represented&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;onlyOverrepresented&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;If checked, under-represented groups will be excluded from the result&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;readOnly&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;P-value threshold&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pvalueThreshold&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;P-value threshold (Pmax)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;readOnly&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;code-string&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;0.05&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;auto&quot;</span><span class="p">:</span> <span class="s2">&quot;on&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;Result name&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;icon&quot;</span><span class="p">:</span> <span class="s2">&quot;biouml.plugins.enrichment:biouml/plugins/enrichment/resources/classify.gif&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Name and path for the resulting table&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;readOnly&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;data-element-path&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;canBeNull&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;promptOverwrite&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;outputTable&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;elementClass&quot;</span><span class="p">:</span> <span class="s2">&quot;ru.biosoft.table.TableDataCollection&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;(select element)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;elementMustExist&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;multiSelect&quot;</span><span class="p">:</span> <span class="kc">false</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="functional-classification-using-genexplainr">Functional classification using geneXplainR</h2>
+<p>The R code of this section is provided with the tutorial material as
+<em>first_example.R</em>. Please note that some parts require editing before
+running the script, including username, password, project name.</p>
+<h3 id="folder-preparation">Folder preparation</h3>
+<p>In the R script we firstly load the <code>geneXplainR</code> library and log into
+a geneXplain platform account. Then we prepare a project as well as a data folder
+for the analysis files. The following source code also shows the function <code>gx.ls</code>
+that lists the data elements of a specified folder. The <em>data/Projects</em> path
+contains all projects and associated data folders. The path of a data folder within a project
+follows the pattern <em>data/Projects/&lt;project name&gt;/Data/&lt;folder name&gt;</em> .</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">geneXplainR</span><span class="p">)</span>
+
+<span class="c1"># Username (email) and password need to be replaced with valid credentials.</span>
+<span class="c1">#</span>
+<span class="nf">gx.login</span><span class="p">(</span><span class="s">&quot;https://platform.genexplain.com&quot;</span><span class="p">,</span> <span class="s">&quot;someuser@email.io&quot;</span><span class="p">,</span> <span class="s">&quot;12345&quot;</span><span class="p">)</span>
+
+<span class="c1"># The gx.ls function returns a listing of the specified workspace folder.</span>
+<span class="c1">#</span>
+<span class="nf">gx.ls</span><span class="p">(</span><span class="s">&quot;data/Projects&quot;</span><span class="p">)</span>
+
+<span class="c1"># The project name has to be unique on the connected platform server.</span>
+<span class="c1">#</span>
+<span class="n">apiProjectName</span> <span class="o">&lt;-</span> <span class="s">&quot;api2022_tutorial&quot;</span>
+<span class="n">apiProjectPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;data/Projects/&quot;</span><span class="p">,</span> <span class="n">apiProjectName</span><span class="p">)</span>
+
+<span class="c1"># The gx.createProject function returns an error if the project already</span>
+<span class="c1"># exists.</span>
+<span class="c1">#</span>
+<span class="nf">gx.createProject</span><span class="p">(</span><span class="n">apiProjectName</span><span class="p">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;API 2022 tutorial project&quot;</span><span class="p">)</span>
+
+<span class="n">funclassFolder</span> <span class="o">&lt;-</span> <span class="s">&quot;first_example_functional_class&quot;</span>
+<span class="n">folderPath</span>     <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">apiProjectPath</span><span class="p">,</span> <span class="s">&quot;Data/&quot;</span><span class="p">,</span> <span class="n">funclassFolder</span><span class="p">)</span>
+
+<span class="c1"># The gx.createFolder function creates the folder if it does not</span>
+<span class="c1"># already exist.</span>
+<span class="c1">#</span>
+<span class="nf">gx.createFolder</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">apiProjectPath</span><span class="p">,</span> <span class="s">&quot;Data&quot;</span><span class="p">),</span> <span class="n">funclassFolder</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<h3 id="data-upload">Data upload</h3>
+<p>We import the gene list file using the <code>gx.importTable</code> function. This is a
+specialized function for tabular data. The <code>gx.import</code> function can be used 
+to import many different data types and formats. The <code>gx.importers</code> function
+shows available importers and the <code>gx.import.parameters</code> function provides
+information about importer parameters.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">species</span> <span class="o">&lt;-</span> <span class="s">&quot;Human (Homo sapiens)&quot;</span>
+<span class="n">dataName</span> <span class="o">&lt;-</span> <span class="s">&quot;funclass_genes_covid-19&quot;</span>
+
+<span class="c1"># The gx.importers function returns a list of available importers</span>
+<span class="c1"># for different data types.</span>
+<span class="c1">#</span>
+<span class="nf">gx.importers</span><span class="p">()</span>
+
+<span class="c1"># The available parameters for a specific importer and a destination</span>
+<span class="c1"># folder can be interrogated using the gx.import.parameters function.</span>
+<span class="c1">#</span>
+<span class="nf">gx.import.parameters</span><span class="p">(</span><span class="n">folderPath</span><span class="p">,</span> <span class="s">&quot;Tabular (*.txt, *.xls, *.tab, etc.)&quot;</span><span class="p">)</span>
+
+<span class="c1"># The geneXplainR library provides a specialized function to import tabular</span>
+<span class="c1"># data files.</span>
+<span class="c1">#</span>
+<span class="nf">gx.importTable</span><span class="p">(</span><span class="s">&quot;../data/functional_classification_genes_GSE156063.tsv&quot;</span><span class="p">,</span> <span class="n">folderPath</span><span class="p">,</span>
+               <span class="n">dataName</span><span class="p">,</span> <span class="n">columnForID</span> <span class="o">=</span> <span class="s">&quot;ID&quot;</span><span class="p">,</span> 
+               <span class="n">tableType</span> <span class="o">=</span> <span class="s">&quot;Genes: Ensembl&quot;</span><span class="p">,</span> <span class="n">species</span> <span class="o">=</span> <span class="n">species</span><span class="p">)</span>
+
+<span class="c1"># This is the platform workspace path of the imported data.</span>
+<span class="c1">#</span>
+<span class="n">funclassGenePath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">folderPath</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="n">dataName</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<h3 id="functional-classification">Functional classification</h3>
+<p>The <em>Functional classification</em> analysis is invoked by the <code>gx.analysis</code> function. Information
+about the elements of the parameter list can be obtained by the <em>parameters</em> command line tool described
+<a href="#platform-tool-parameters">above</a> or the <code>gx.analyis.parameters</code>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">funclassResultPath</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">funclassGenePath</span><span class="p">,</span><span class="s">&quot; GO&quot;</span><span class="p">)</span>
+
+<span class="c1"># The gx.analysis.parameters function shows input option names and </span>
+<span class="c1"># descriptions for a specified platform tool.</span>
+<span class="c1">#</span>
+<span class="nf">gx.analyis.parameters</span><span class="p">(</span><span class="s">&quot;Functional classification&quot;</span><span class="p">)</span>
+
+<span class="c1"># The gx.analysis function submits analysis tasks to the connected</span>
+<span class="c1"># platform server.</span>
+<span class="c1">#</span>
+<span class="nf">gx.analysis</span><span class="p">(</span><span class="s">&quot;Functional classification&quot;</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">sourcePath</span> <span class="o">=</span> <span class="n">funclassGenePath</span><span class="p">,</span>
+                                              <span class="n">species</span>    <span class="o">=</span> <span class="n">species</span><span class="p">,</span>
+                                              <span class="n">bioHub</span>     <span class="o">=</span> <span class="s">&quot;Full gene ontology classification&quot;</span><span class="p">,</span>
+                                              <span class="n">minHits</span>    <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+                                              <span class="n">pvalueThreshold</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+                                              <span class="n">outputTable</span> <span class="o">=</span> <span class="n">funclassResultPath</span><span class="p">))</span>
+
+<span class="c1"># The gx.get function loads data tables from the platform workspace into</span>
+<span class="c1"># a data frame.</span>
+<span class="c1">#</span>
+<span class="n">funclassResult</span> <span class="o">&lt;-</span> <span class="nf">gx.get</span><span class="p">(</span><span class="n">funclassResultPath</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">funclassResult</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="functional-classification-using-genexplain-api">Functional classification using genexplain-api</h2>
+<h3 id="getting-importer-types-and-platform-tool-parameters">Getting importer types and platform tool parameters</h3>
+<p>The workflow of this example analysis requires uploading a gene list into a platform workspace. The
+gene list is then analyzed using a platform analysis tool. Therefore, we need to know how to import
+our gene list and which parameters are needed for the import process as well as for the subsequent
+analysis. While in the case of this specific analysis we can make use of a dedicated method to import
+of tabular data, here we demonstrate how to find out about <em>importers</em> and their parameters as well as
+the input parameters for the <em>Functional classification</em> tool using genexplain-api library
+methods.</p>
+<p><em>Importers</em> are platform functions that import specific data types and formats, e.g.
+tabular data stored in a text file, into a platform workspace. The list of available importers is
+extracted using the <code>listImporters</code> method of the <code>client</code> object, whereas its <code>getImporterParameters</code>
+method returns information about parameters of a specific importer, in this the importer for tabular
+data. Finally, the <code>getAnalysisParameters</code> method retrieves input option specifications for the
+analysis tool from the connected platform server.</p>
+<p>The code of this section is provided with the tutorial material as
+<em>ToolParameters.java</em>. Please note that some parts require editing before
+running the program, including username, password, project name.</p>
+<p>The Java class can be compiled and executed with commands like the
+following.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>javac -cp .:genexplain-api.jar ToolParameters.java
+java -cp .:genexplain-api.jar ToolParameters
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">com.eclipsesource.json.JsonValue</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">com.eclipsesource.json.JsonObject</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">com.eclipsesource.json.PrettyPrint</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">com.genexplain.api.core.GxHttpClient</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">com.genexplain.api.core.GxHttpClientImpl</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">com.genexplain.api.core.GxHttpConnection</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">com.genexplain.api.core.GxHttpConnectionImpl</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.StringWriter</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.io.Writer</span><span class="p">;</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ToolParameters</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="p">{</span>
+
+        <span class="c1">// The GxHttpConnectionImpl holds the connection to the specified</span>
+        <span class="c1">// platform server. Username and password need to correspond to a</span>
+        <span class="c1">// valid account on that server.</span>
+        <span class="c1">//</span>
+        <span class="n">GxHttpConnectionImpl</span> <span class="n">con</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GxHttpConnectionImpl</span><span class="p">();</span>
+        <span class="n">con</span><span class="p">.</span><span class="na">setServer</span><span class="p">(</span><span class="s">&quot;https://platform.genexplain.com&quot;</span><span class="p">);</span>
+        <span class="n">con</span><span class="p">.</span><span class="na">setUsername</span><span class="p">(</span><span class="s">&quot;someuser@email.io&quot;</span><span class="p">);</span>
+        <span class="n">con</span><span class="p">.</span><span class="na">setPassword</span><span class="p">(</span><span class="s">&quot;12345&quot;</span><span class="p">);</span>
+        <span class="n">con</span><span class="p">.</span><span class="na">setVerbose</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+        <span class="n">con</span><span class="p">.</span><span class="na">login</span><span class="p">();</span>
+
+        <span class="c1">// The connection is given to a client object. The client is the</span>
+        <span class="c1">// main component to interact with the connected platform server.</span>
+        <span class="c1">//</span>
+        <span class="n">GxHttpClientImpl</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GxHttpClientImpl</span><span class="p">();</span>
+        <span class="n">client</span><span class="p">.</span><span class="na">setConnection</span><span class="p">(</span><span class="n">con</span><span class="p">);</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;--- Available importers ---&quot;</span><span class="p">);</span>
+
+        <span class="c1">// The listImporters method returns a JSON object with the list</span>
+        <span class="c1">// of importers contained in the &quot;values&quot; array.</span>
+        <span class="c1">//</span>
+        <span class="n">JsonObject</span> <span class="n">importers</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="na">listImporters</span><span class="p">();</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">JsonValue</span> <span class="n">imp</span> <span class="p">:</span> <span class="n">importers</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;values&quot;</span><span class="p">).</span><span class="na">asArray</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">imp</span><span class="p">.</span><span class="na">asString</span><span class="p">());</span>
+        <span class="p">}</span>
+
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;--- Importer parameters ---&quot;</span><span class="p">);</span>
+
+        <span class="c1">// The getImporterParameters method returns a JSON object </span>
+        <span class="c1">// containing a description of importer parameters. The</span>
+        <span class="c1">// importer parameters are requested for a target folder.</span>
+        <span class="c1">//</span>
+        <span class="n">JsonObject</span> <span class="n">importParams</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="na">getImporterParameters</span><span class="p">(</span>
+                        <span class="s">&quot;data/Projects/api2022_tutorial/Data/first_example_functional_class&quot;</span><span class="p">,</span> 
+                        <span class="s">&quot;Tabular (*.txt, *.xls, *.tab, etc.)&quot;</span><span class="p">);</span>
+        <span class="n">Writer</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringWriter</span><span class="p">();</span>
+        <span class="n">importParams</span><span class="p">.</span><span class="na">writeTo</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">PrettyPrint</span><span class="p">.</span><span class="na">indentWithSpaces</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">writer</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;--- Functional classification parameters ---&quot;</span><span class="p">);</span>
+
+        <span class="c1">// The getAnalysisParameters method returns a JSON object </span>
+        <span class="c1">// containing a description of analysis tool parameters.</span>
+        <span class="c1">//</span>
+        <span class="n">JsonObject</span> <span class="n">funClassParams</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="na">getAnalysisParameters</span><span class="p">(</span><span class="s">&quot;Functional classification&quot;</span><span class="p">);</span>
+        <span class="n">Writer</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringWriter</span><span class="p">();</span>
+        <span class="n">funClassParams</span><span class="p">.</span><span class="na">writeTo</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">PrettyPrint</span><span class="p">.</span><span class="na">indentWithSpaces</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">writer</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+
+        <span class="n">con</span><span class="p">.</span><span class="na">logout</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h3 id="java-program-for-functional-classification">Java program for functional classification</h3>
+<p>The code of this section is provided with the tutorial material as
+<em>FirstExample.java</em>. Please note that some parts require editing before
+running the program, including username, password, project name.</p>
+<p>The Java class can be compiled and executed with commands like the
+following.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>javac -cp .:genexplain-api.jar FirstExample.java
+java -cp .:genexplain-api.jar FirstExample
+</code></pre></div>
+</td></tr></table>
+
+<p>In the Java program we import the core classes and interfaces from <code>com.genexplain.api.core</code> and log
+into a geneXplain platform account. Then we prepare a project as well as a data folder
+for the analysis files. The <em>data/Projects</em> path contains all projects and associated data folders.
+The path of a data folder within a project follows the pattern </p>
+<p><em>data/Projects/&lt;project name&gt;/Data/&lt;folder name&gt;</em> .</p>
+<p>We import the gene list file using the <code>importTable</code> function. This is a specialized function for 
+tabular data. The <em>Functional classification</em> analysis is invoked by the <code>analyze</code> method of the
+client. Information about the elements of the parameter object can be obtained by the <em>parameters</em>
+command line tool described <a href="#platform-tool-parameters">above</a> or as shown 
+<a href="#getting-importer-types-and-platform-tool-parameters">here</a>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">com.eclipsesource.json.JsonValue</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">com.eclipsesource.json.JsonObject</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">com.eclipsesource.json.PrettyPrint</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">com.genexplain.api.core.GxHttpClient</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">com.genexplain.api.core.GxHttpClientImpl</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">com.genexplain.api.core.GxHttpConnection</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">com.genexplain.api.core.GxHttpConnectionImpl</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.StringWriter</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.io.Writer</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FirstExample</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="p">{</span>
+
+        <span class="c1">// The GxHttpConnectionImpl holds the connection to the specified</span>
+        <span class="c1">// platform server. Username and password need to correspond to a</span>
+        <span class="c1">// valid account on that server.</span>
+        <span class="c1">//</span>
+        <span class="n">GxHttpConnectionImpl</span> <span class="n">con</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GxHttpConnectionImpl</span><span class="p">();</span>
+        <span class="n">con</span><span class="p">.</span><span class="na">setServer</span><span class="p">(</span><span class="s">&quot;https://platform.genexplain.com&quot;</span><span class="p">);</span>
+        <span class="n">con</span><span class="p">.</span><span class="na">setUsername</span><span class="p">(</span><span class="s">&quot;someuser@email.io&quot;</span><span class="p">);</span>
+        <span class="n">con</span><span class="p">.</span><span class="na">setPassword</span><span class="p">(</span><span class="s">&quot;12345&quot;</span><span class="p">);</span>
+        <span class="n">con</span><span class="p">.</span><span class="na">setVerbose</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+        <span class="n">con</span><span class="p">.</span><span class="na">login</span><span class="p">();</span>
+
+        <span class="c1">// The connection is given to a client object. The client is the </span>
+        <span class="c1">// main component to interact with the connected platform server.</span>
+        <span class="c1">//</span>
+        <span class="n">GxHttpClientImpl</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GxHttpClientImpl</span><span class="p">();</span>
+        <span class="n">client</span><span class="p">.</span><span class="na">setConnection</span><span class="p">(</span><span class="n">con</span><span class="p">);</span>
+
+        <span class="c1">// The createProject method creates a new project in the user</span>
+        <span class="c1">// workspace. The project name must be new and unique on the </span>
+        <span class="c1">// platform instance. The platform path of the new project is </span>
+        <span class="c1">// &quot;data/Projects/&lt;project name&gt;&quot;.</span>
+        <span class="c1">//</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">projectParams</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">projectParams</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;user&quot;</span><span class="p">,</span> <span class="s">&quot;someuser@email.io&quot;</span><span class="p">);</span>
+        <span class="n">projectParams</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;pass&quot;</span><span class="p">,</span> <span class="s">&quot;12345&quot;</span><span class="p">);</span>
+        <span class="n">projectParams</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;project&quot;</span><span class="p">,</span> <span class="s">&quot;api2022_tutorial&quot;</span><span class="p">);</span>
+        <span class="n">projectParams</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;description&quot;</span><span class="p">,</span> <span class="s">&quot;API 2022 tutorial project&quot;</span><span class="p">);</span>
+        <span class="n">client</span><span class="p">.</span><span class="na">createProject</span><span class="p">(</span><span class="n">projectParams</span><span class="p">)</span>
+
+        <span class="c1">// The createFolder function creates the folder if it does not </span>
+        <span class="c1">// already exist.</span>
+        <span class="c1">//</span>
+        <span class="n">client</span><span class="p">.</span><span class="na">createFolder</span><span class="p">(</span><span class="s">&quot;data/Projects/api2022_tutorial/Data&quot;</span><span class="p">,</span> <span class="s">&quot;first_example_functional_class&quot;</span><span class="p">);</span>
+
+        <span class="c1">// The API provides for a specialized method to import tabular</span>
+        <span class="c1">// data.</span>
+        <span class="c1">//</span>
+        <span class="n">client</span><span class="p">.</span><span class="na">importTable</span><span class="p">(</span><span class="s">&quot;../data/functional_classification_genes_GSE156063.tsv&quot;</span><span class="p">,</span>
+                           <span class="s">&quot;data/Projects/api2022_tutorial/Data/first_example_functional_class&quot;</span><span class="p">,</span>
+                           <span class="s">&quot;funclass_genes_covid-19&quot;</span><span class="p">,</span>
+                           <span class="kc">false</span><span class="p">,</span> 
+                           <span class="n">GxHttpClient</span><span class="p">.</span><span class="na">ColumnDelimiter</span><span class="p">.</span><span class="na">Tab</span><span class="p">,</span> 
+                           <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;ID&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s">&quot;Genes: Ensembl&quot;</span><span class="p">,</span> <span class="s">&quot;Human (Homo sapiens)&quot;</span><span class="p">);</span>
+
+        <span class="c1">// After data import it is often advisable to let background </span>
+        <span class="c1">// processes on the server finish their work, before proceeding </span>
+        <span class="c1">// with analyzing the uploaded data.</span>
+        <span class="c1">//</span>
+        <span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+
+        <span class="c1">// The analyze function submits analysis tasks to the connected </span>
+        <span class="c1">// platform server.</span>
+        <span class="c1">//</span>
+        <span class="n">JsonObject</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JsonObject</span><span class="p">()</span>
+            <span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;sourcePath&quot;</span><span class="p">,</span> <span class="s">&quot;data/Projects/api2022_tutorial/Data/first_example_functional_class/funclass_genes_covid-19&quot;</span><span class="p">)</span>
+            <span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;species&quot;</span><span class="p">,</span> <span class="s">&quot;Human (Homo sapiens)&quot;</span><span class="p">)</span>
+            <span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;bioHub&quot;</span><span class="p">,</span> <span class="s">&quot;Full gene ontology classification&quot;</span><span class="p">)</span>
+            <span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;minHits&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;pvalueThreshold&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;outputTable&quot;</span><span class="p">,</span> <span class="s">&quot;data/Projects/api2022_tutorial/Data/first_example_functional_class/funclass_genes_covid-19 GO&quot;</span><span class="p">);</span>
+        <span class="n">client</span><span class="p">.</span><span class="na">analyze</span><span class="p">(</span><span class="s">&quot;Functional classification&quot;</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+        <span class="n">con</span><span class="p">.</span><span class="na">logout</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="functional-classification-using-the-commandline">Functional classification using the commandline</h2>
+<h3 id="commandline-and-json">Commandline and JSON</h3>
+<p>The <a href="../api_overview/#exec-executing-tasks-using-the-json-interface"><em>exec</em></a> application, provided by the genexplain-api JAR package, is 
+invoked with a configuration file in JSON format.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>java -jar genexplain-api.jar <span class="nb">exec</span> first_example.json
+</code></pre></div>
+</td></tr></table>
+
+<p>The content of the JSON file to run the example analysis workflow (named <em>first_example.json</em> in 
+the example above) is shown <a href="#json-configuration-file-for-functional-classification">below</a>.
+It contains a JSON object with server, username and password parameters as well as a task list.
+Please note that <code>server</code>, <code>user</code>, <code>password</code> as well as the project name (<em>api2022_tutorial</em> used as example) need
+to be replaced with proper values. The <code>reconnect</code> property instructs the program to try to reconnect in case of interruption.</p>
+<p>The JSON configuration is provided with the tutorial material as
+<em>first_example.json</em>. Please note that some parts require editing before
+running the program, including username, password, project name.</p>
+<p>The <code>tasks</code> property is a JSON array with the sequence of tasks that <em>exec</em>
+shall perform. Each task is described by an object that firstly defines
+an <em>executor</em> using the <code>do</code> property. The <em>exec</em> application has a set
+of executors for different kinds of tasks which typically resemble functions
+and methods of the R and Java APIs. The executors are described in detail <a href="../api_overview/#main-executors">here</a>.</p>
+<p>The example functional classification analysis uses four executors.</p>
+<ol>
+<li>The <a href="../api_overview/#createfolder">createFolder executor</a> creates a folder named <code>first_example_functional_class</code>
+within the <code>api2022_tutorial</code> project.</li>
+<li>The <a href="../api_overview/#import">imPort executor</a> imports the gene list file into the analysis folder.</li>
+<li>After the import, <a href="../api_overview/#external">external</a> executes an external script to wait for one second,
+in order to allow background processes on the platform server to finish their work
+before proceeding with the analysis.</li>
+<li>The <a href="../api_overview/#analyze">analyze executor</a> invokes the platform tool <em>Functional classification</em>.</li>
+</ol>
+<p>The script invoked by <code>external</code> is a simple shell script:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1">#/bin/sh</span>
+
+sleep <span class="m">1</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Information about the parameters required for importers and analysis tools
+can be obtained using the <a href="../api_overview/#importer-and-exporter-descriptions-of-data-importers-exporters-and-their-parameters"><em>import</em></a>
+and <a href="../api_overview/#parameters-parameter-descriptions-for-platform-and-galaxy-tools"><em>parameters</em></a> applications, respectively,
+Another options is to use the <a href="api_overview/#itemparameters"><em>itemParameters</em></a> executor with <em>exec</em>.
+The list of available platform tools is provided by <a href="../api_overview/#apps-listing-available-tools"><em>apps</em></a> or by the
+<a href="api_overview/#listitems"><em>listItems</em></a> executor of <em>exec</em>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>java -jar genexplain-api.jar import <span class="o">(</span>...<span class="o">)</span>
+java -jar genexplain-api.jar parameters <span class="o">(</span>...<span class="o">)</span>
+java -jar genexplain-api.jar apps <span class="o">(</span>...<span class="o">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<h3 id="json-configuration-file-for-functional-classification">JSON configuration file for functional classification</h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;server&quot;</span><span class="p">:</span>          <span class="s2">&quot;https://platform.genexplain.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;user&quot;</span><span class="p">:</span>            <span class="s2">&quot;someuser@email.io&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;password&quot;</span><span class="p">:</span>        <span class="s2">&quot;12345&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;reconnect&quot;</span><span class="p">:</span>       <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;tasks&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span> <span class="s2">&quot;createFolder&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;showOutput&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;data/Projects/api2022_tutorial/Data&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;first_example_functional_class&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span> <span class="s2">&quot;imPort&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;file&quot;</span><span class="p">:</span> <span class="s2">&quot;../data/functional_classification_genes_GSE156063.tsv&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;data/Projects/api2022_tutorial/Data/first_example_functional_class&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;importer&quot;</span><span class="p">:</span> <span class="s2">&quot;Tabular (*.txt, *.xls, *.tab, etc.)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;columnForID&quot;</span><span class="p">:</span> <span class="s2">&quot;ID&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;tableType&quot;</span><span class="p">:</span>   <span class="s2">&quot;Genes: Ensembl&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;species&quot;</span><span class="p">:</span>     <span class="s2">&quot;Human (Homo sapiens)&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span> <span class="s2">&quot;external&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;showOutput&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;bin&quot;</span><span class="p">:</span> <span class="s2">&quot;sh&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;waitns.sh&quot;</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span> <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;Functional classification&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;sourcePath&quot;</span><span class="p">:</span> <span class="s2">&quot;data/Projects/api2022_tutorial/Data/first_example_functional_class/functional_classification_genes_GSE156063&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;species&quot;</span><span class="p">:</span>    <span class="s2">&quot;Human (Homo sapiens)&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;bioHub&quot;</span><span class="p">:</span>     <span class="s2">&quot;Full gene ontology classification&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;minHits&quot;</span><span class="p">:</span>    <span class="mi">1</span><span class="p">,</span>
+                <span class="nt">&quot;pvalueThreshold&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="nt">&quot;outputTable&quot;</span><span class="p">:</span> <span class="s2">&quot;data/Projects/api2022_tutorial/Data/first_example_functional_class/functional_classification_genes_GSE156063 GO&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href=".." class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Introduction
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../basics/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Platform tools and parameters
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            &copy; 2022 geneXplain GmbH, Wolfenbuettel, Germany
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>

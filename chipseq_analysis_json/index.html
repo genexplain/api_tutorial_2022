@@ -1,0 +1,1403 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="geneXplain platform API tutorial 2022">
+      
+      
+      
+        <meta name="author" content="pstegma">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>JSON interface - Tutorial for geneXplain platform APIs 2022</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chip-seq-data-analysis-using-the-genexplain-api-json-interface" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Tutorial for geneXplain platform APIs 2022" class="md-header-nav__button md-logo" aria-label="Tutorial for geneXplain platform APIs 2022">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Tutorial for geneXplain platform APIs 2022
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              JSON interface
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/genexplain/api_tutorial_2022/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Tutorial for geneXplain platform APIs 2022" class="md-nav__button md-logo" aria-label="Tutorial for geneXplain platform APIs 2022">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Tutorial for geneXplain platform APIs 2022
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/genexplain/api_tutorial_2022/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../first_example/" class="md-nav__link">
+      A first example&#58; Enrichment of gene functions in a gene set
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../basics/" class="md-nav__link">
+      Platform tools and parameters
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../api_overview/" class="md-nav__link">
+      Overview of APIs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Example workflow&#58; Analysis of ChIP-seq data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Example workflow&#58; Analysis of ChIP-seq data" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Example workflow&#58; Analysis of ChIP-seq data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../chipseq_analysis_intro/" class="md-nav__link">
+      Analysis overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../chipseq_analysis_r/" class="md-nav__link">
+      geneXplainR
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../chipseq_analysis_java/" class="md-nav__link">
+      Java program
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        JSON interface
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      JSON interface
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#json-configuration-for-the-tutorial-workflow" class="md-nav__link">
+    JSON configuration for the tutorial workflow
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#json-configuration-for-the-tutorial-workflow" class="md-nav__link">
+    JSON configuration for the tutorial workflow
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/genexplain/api_tutorial_2022/edit/master/docs/chipseq_analysis_json.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chip-seq-data-analysis-using-the-genexplain-api-json-interface">ChIP-seq data analysis using the genexplain-api JSON interface</h1>
+<p>The JSON document <a href="#json-configuration-for-the-tutorial-workflow">below</a> executes 
+the tutorial workflow using the <em>exec</em> program of the
+Java package with a command like the following. The JSON file is provided
+with the tutorial material as <em>genexplain_tutorial_chipseq_analysis.json</em>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>java -jar genexplain-api.jar <span class="nb">exec</span> genexplain_tutorial_chipseq_analysis.json
+</code></pre></div>
+</td></tr></table>
+
+<p>The <a href="../chipseq_analysis_intro/">described workflow steps</a> are indicated in comments for reference.</p>
+<p>Please note that the JSON properties <code>user</code> and <code>password</code>, possibly also <code>server</code>,
+need to be altered to valid parameters.</p>
+<p>The external scripts <em>waitns.sh</em>, <em>chipseq_analysis_grn_pwms.py</em>, <em>chipseq_analysis_tal1.py</em>
+are provided with the tutorial material. The script paths (<strong>$WAIT_SCRIPT</strong>, <strong>$PWM_ID_SCRIPT</strong>,
+<strong>$TAL1_GENE_SCRIPT</strong>) in the JSON configuration may require adjustment.</p>
+<p>The JSON document assumes an existing platform project. It was named
+<em>api2022_tutorial</em> as example. To run execute the workflow a new
+project needs to be created and the value assigned to <strong>$PARENT_FOLDER</strong>
+(currently <em>data/Projects/api2022_tutorial/Data</em>) needs to be
+adjusted.</p>
+<p>Similarly, the tutorial paths assigned to <strong>$CHIPSEQ_BED_ALL</strong> and
+<strong>$CHIPSEQ_BED_SAMPLE</strong> may require adjustment.</p>
+<h2 id="json-configuration-for-the-tutorial-workflow">JSON configuration for the tutorial workflow</h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;server&quot;</span><span class="p">:</span>          <span class="s2">&quot;https://platform.genexplain.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;user&quot;</span><span class="p">:</span>            <span class="s2">&quot;someuser@email.io&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;password&quot;</span><span class="p">:</span>        <span class="s2">&quot;12345&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;reconnect&quot;</span><span class="p">:</span>       <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;replaceStrings&quot;</span><span class="p">:</span>  <span class="p">[</span>
+        <span class="p">[</span><span class="s2">&quot;$SPECIES&quot;</span><span class="p">,</span>                    <span class="s2">&quot;Human (Homo sapiens)&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$GENOME_MAPPING&quot;</span><span class="p">,</span>             <span class="s2">&quot;hg18-&gt;hg38&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$ENSEMBL_104_SELECTOR&quot;</span><span class="p">,</span>       <span class="s2">&quot;Ensembl 104.38 Human (hg38)&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$MEALR_TRANSFAC_PROFILE&quot;</span><span class="p">,</span>     <span class="s2">&quot;databases/TRANSFAC(R) 2022.1/Data/profiles/vertebrate_human_p0.05_non3d&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$GRN_TRANSFAC_PROFILE&quot;</span><span class="p">,</span>       <span class="s2">&quot;databases/TRANSFAC(R) 2022.1/Data/profiles/vertebrate_human_p0.001_non3d&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$BED_PATH_ALL&quot;</span><span class="p">,</span>               <span class="s2">&quot;$FOLDER_PATH/GSM614003_jurkat.tal1&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$MAPPED_GENES_GO_PATH&quot;</span><span class="p">,</span>       <span class="s2">&quot;$MAPPED_GENE_PATH_ALL GO&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$MAPPED_GENES_REACTOME_PATH&quot;</span><span class="p">,</span> <span class="s2">&quot;$MAPPED_GENE_PATH_ALL Reactome&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$MAPPED_GENES_HUMANPSD_PATH&quot;</span><span class="p">,</span> <span class="s2">&quot;$MAPPED_GENE_PATH_ALL Human disease biomarkers&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$MAPPED_GENE_PATH_ALL&quot;</span><span class="p">,</span>       <span class="s2">&quot;$MAPPED_PATH_ALL Genes&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$MEALR_BACKGROUND_PATH&quot;</span><span class="p">,</span>      <span class="s2">&quot;$MAPPED_PATH_ALL random 1000&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$MAPPED_PATH_ALL&quot;</span><span class="p">,</span>            <span class="s2">&quot;$FOLDER_PATH/jurkat_chipseq_hg38&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$UNMAPPED_PATH_ALL&quot;</span><span class="p">,</span>          <span class="s2">&quot;$FOLDER_PATH/jurkat_chipseq_hg38_unmapped&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$BED_PATH_SAMPLE&quot;</span><span class="p">,</span>            <span class="s2">&quot;$FOLDER_PATH/GSM614003_jurkat.tal1_1000&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$MEALR_TOP_GENE_PATH&quot;</span><span class="p">,</span>        <span class="s2">&quot;$MEALR_TOP_PATH Genes&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$GRN_FACTOR_PATH&quot;</span><span class="p">,</span>            <span class="s2">&quot;$MEALR_VENN_PATH/Rows present in both tables&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$GRN_MATCH_PATH&quot;</span><span class="p">,</span>             <span class="s2">&quot;$GRN_PWM_PROFILE Match&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$TAL1_MATCH_PATH&quot;</span><span class="p">,</span>            <span class="s2">&quot;$GRN_PWM_PROFILE TAL1 Match&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$GRN_PWM_PROFILE&quot;</span><span class="p">,</span>            <span class="s2">&quot;$GRN_PWM_PATH profile&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$GRN_PWM_PATH&quot;</span><span class="p">,</span>               <span class="s2">&quot;$MEALR_OUTPUT_PATH/grn_pwms&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$TAL1_TRACK_PATH&quot;</span><span class="p">,</span>            <span class="s2">&quot;$TAL1_GENE_PATH promoter&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$TAL1_GENE_PATH&quot;</span><span class="p">,</span>             <span class="s2">&quot;$MEALR_OUTPUT_PATH/tal1&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$MEALR_VENN_PATH&quot;</span><span class="p">,</span>            <span class="s2">&quot;$MEALR_TOP_PATH Venn&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$MEALR_TOP_PATH&quot;</span><span class="p">,</span>             <span class="s2">&quot;$MEALR_MOTIF_PATH Top 50&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$MEALR_MOTIF_PATH&quot;</span><span class="p">,</span>           <span class="s2">&quot;$MEALR_OUTPUT_PATH/MEALR_positive_coefficients&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$MEALR_OUTPUT_PATH&quot;</span><span class="p">,</span>          <span class="s2">&quot;$MAPPED_PATH_SAMPLE MEALR&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$MAPPED_PATH_SAMPLE&quot;</span><span class="p">,</span>         <span class="s2">&quot;$FOLDER_PATH/jurkat_chipseq_hg38_1000&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$UNMAPPED_PATH_SAMPLE&quot;</span><span class="p">,</span>       <span class="s2">&quot;$FOLDER_PATH/jurkat_chipseq_hg38_1000_unmapped&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$FOLDER_PATH&quot;</span><span class="p">,</span>                <span class="s2">&quot;$PARENT_FOLDER$/$FOLDER_NAME$&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$PARENT_FOLDER$&quot;</span><span class="p">,</span>             <span class="s2">&quot;data/Projects/api2022_tutorial/Data&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$FOLDER_NAME$&quot;</span><span class="p">,</span>               <span class="s2">&quot;chipseq_analysis_workflow_json&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$CHIPSEQ_BED_ALL&quot;</span><span class="p">,</span>            <span class="s2">&quot;../data/GSM614003_jurkat.tal1.bed&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$CHIPSEQ_BED_SAMPLE&quot;</span><span class="p">,</span>         <span class="s2">&quot;../data/GSM614003_jurkat.tal1_1000.bed&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$WAIT_SCRIPT&quot;</span><span class="p">,</span>                <span class="s2">&quot;waitns.sh&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$PWM_ID_SCRIPT&quot;</span><span class="p">,</span>              <span class="s2">&quot;chipseq_analysis_grn_pwms.py&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;$TAL1_GENE_SCRIPT&quot;</span><span class="p">,</span>           <span class="s2">&quot;chipseq_analysis_tal1.py&quot;</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;tasks&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span> <span class="s2">&quot;createFolder&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;showOutput&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;$PARENT_FOLDER$&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;$FOLDER_NAME$&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Prepare folder for analysis data and results&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>       <span class="s2">&quot;imPort&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;file&quot;</span><span class="p">:</span>     <span class="s2">&quot;$CHIPSEQ_BED_ALL&quot;</span><span class="p">,</span> 
+            <span class="nt">&quot;path&quot;</span><span class="p">:</span>     <span class="s2">&quot;$FOLDER_PATH&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;importer&quot;</span><span class="p">:</span> <span class="s2">&quot;BED format (*.bed)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;dbSelector&quot;</span><span class="p">:</span> <span class="s2">&quot;Ensembl 52.36n Human (hg18)&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 1.1 Import the BED file with TAL1-bound regions into the destination folder&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span> <span class="s2">&quot;external&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;showOutput&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;bin&quot;</span><span class="p">:</span> <span class="s2">&quot;sh&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;$WAIT_SCRIPT&quot;</span><span class="p">],</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Run external script to allow server process to finish before using imported data&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;liftOver1&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;input&quot;</span><span class="p">:</span>     <span class="s2">&quot;$BED_PATH_ALL&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;mapping&quot;</span><span class="p">:</span>   <span class="s2">&quot;$GENOME_MAPPING&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;minMatch&quot;</span><span class="p">:</span>  <span class="mf">0.95</span><span class="p">,</span>
+                <span class="nt">&quot;out_file1&quot;</span><span class="p">:</span> <span class="s2">&quot;$MAPPED_PATH_ALL&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;out_file2&quot;</span><span class="p">:</span> <span class="s2">&quot;$UNMAPPED_PATH_ALL&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 1.2 Run Liftover to map hg18 coordinates to hg38&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;Track to gene set&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;sourcePaths&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;$MAPPED_PATH_ALL&quot;</span><span class="p">],</span>
+                <span class="nt">&quot;species&quot;</span><span class="p">:</span>     <span class="s2">&quot;$SPECIES&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;from&quot;</span><span class="p">:</span>        <span class="mi">-5000</span><span class="p">,</span>
+                <span class="nt">&quot;to&quot;</span><span class="p">:</span>          <span class="mi">2000</span><span class="p">,</span>
+                <span class="nt">&quot;destPath&quot;</span><span class="p">:</span>    <span class="s2">&quot;$MAPPED_GENE_PATH_ALL&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 2. Run &#39;Track to gene set&#39; tool to map genomic coordinates to genes&quot;</span>
+        <span class="p">},</span>
+
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;Functional classification&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;sourcePath&quot;</span><span class="p">:</span> <span class="s2">&quot;$MAPPED_GENE_PATH_ALL&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;species&quot;</span><span class="p">:</span>    <span class="s2">&quot;$SPECIES&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;bioHub&quot;</span><span class="p">:</span>     <span class="s2">&quot;Full gene ontology classification&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;minHits&quot;</span><span class="p">:</span>    <span class="mi">1</span><span class="p">,</span>
+                <span class="nt">&quot;pvalueThreshold&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="nt">&quot;outputTable&quot;</span><span class="p">:</span> <span class="s2">&quot;$MAPPED_GENES_GO_PATH&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 3.1 Enrichment of genes associated with Gene Ontology terms using &#39;Functional classification&#39;&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>       <span class="s2">&quot;export&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;file&quot;</span><span class="p">:</span>     <span class="s2">&quot;functional_classification_result_GO.tsv&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;path&quot;</span><span class="p">:</span>     <span class="s2">&quot;$MAPPED_GENES_GO_PATH&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;exporter&quot;</span><span class="p">:</span> <span class="s2">&quot;Tab-separated text (*.txt)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 3.2 Export analysis results to local file&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;Functional classification&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;sourcePath&quot;</span><span class="p">:</span> <span class="s2">&quot;$MAPPED_GENE_PATH_ALL&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;species&quot;</span><span class="p">:</span>    <span class="s2">&quot;$SPECIES&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;bioHub&quot;</span><span class="p">:</span>     <span class="s2">&quot;Reactome pathways (74)&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;minHits&quot;</span><span class="p">:</span>    <span class="mi">1</span><span class="p">,</span>
+                <span class="nt">&quot;pvalueThreshold&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="nt">&quot;outputTable&quot;</span><span class="p">:</span> <span class="s2">&quot;$MAPPED_GENES_REACTOME_PATH&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 3.3 Enrichment of genes associated with Reactome pathways using &#39;Functional classification&#39;&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>       <span class="s2">&quot;export&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;file&quot;</span><span class="p">:</span>     <span class="s2">&quot;functional_classification_result_Reactome.tsv&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;path&quot;</span><span class="p">:</span>     <span class="s2">&quot;$MAPPED_GENES_REACTOME_PATH&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;exporter&quot;</span><span class="p">:</span> <span class="s2">&quot;Tab-separated text (*.txt)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 3.4 Export analysis results to local file&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;Functional classification&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;sourcePath&quot;</span><span class="p">:</span> <span class="s2">&quot;$MAPPED_GENE_PATH_ALL&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;species&quot;</span><span class="p">:</span>    <span class="s2">&quot;$SPECIES&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;bioHub&quot;</span><span class="p">:</span>     <span class="s2">&quot;HumanPSD(TM) disease (2022.1)&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;minHits&quot;</span><span class="p">:</span>    <span class="mi">1</span><span class="p">,</span>
+                <span class="nt">&quot;pvalueThreshold&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="nt">&quot;outputTable&quot;</span><span class="p">:</span> <span class="s2">&quot;$MAPPED_GENES_HUMANPSD_PATH&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 3.5 Enrichment of biomarkers of human diseases annotated in the HumanPSD knowledgebase&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>       <span class="s2">&quot;export&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;file&quot;</span><span class="p">:</span>     <span class="s2">&quot;functional_classification_result_HumanPSD.tsv&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;path&quot;</span><span class="p">:</span>     <span class="s2">&quot;$MAPPED_GENES_HUMANPSD_PATH&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;exporter&quot;</span><span class="p">:</span> <span class="s2">&quot;Tab-separated text (*.txt)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 3.6 Export analysis results to local file&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;Create random track&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;inputTrackPath&quot;</span><span class="p">:</span>      <span class="s2">&quot;$MAPPED_PATH_ALL&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;dbSelector&quot;</span><span class="p">:</span>          <span class="s2">&quot;$ENSEMBL_104_SELECTOR&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;species&quot;</span><span class="p">:</span>             <span class="s2">&quot;$SPECIES&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;standardChromosomes&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nt">&quot;seqNumber&quot;</span><span class="p">:</span>           <span class="mi">1000</span><span class="p">,</span>
+                <span class="nt">&quot;seqLength&quot;</span><span class="p">:</span>           <span class="mi">0</span><span class="p">,</span>
+                <span class="nt">&quot;from&quot;</span><span class="p">:</span>                <span class="mi">0</span><span class="p">,</span>
+                <span class="nt">&quot;to&quot;</span><span class="p">:</span>                  <span class="mi">0</span><span class="p">,</span>
+                <span class="nt">&quot;withOverlap&quot;</span><span class="p">:</span>         <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;randomShift&quot;</span><span class="p">:</span>         <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;outputTrackPath&quot;</span><span class="p">:</span>     <span class="s2">&quot;$MEALR_BACKGROUND_PATH&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;randSeed&quot;</span><span class="p">:</span>            <span class="mi">123</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 4. Create random track not overlapping with TAL1-bound regions&quot;</span>
+        <span class="p">},</span>        
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>       <span class="s2">&quot;imPort&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;file&quot;</span><span class="p">:</span>     <span class="s2">&quot;$CHIPSEQ_BED_SAMPLE&quot;</span><span class="p">,</span> 
+            <span class="nt">&quot;path&quot;</span><span class="p">:</span>     <span class="s2">&quot;$FOLDER_PATH&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;importer&quot;</span><span class="p">:</span> <span class="s2">&quot;BED format (*.bed)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;dbSelector&quot;</span><span class="p">:</span> <span class="s2">&quot;Ensembl 52.36n Human (hg18)&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 5.1 Import sampled TAL1 ChIP-seq sites&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span> <span class="s2">&quot;external&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;showOutput&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;bin&quot;</span><span class="p">:</span> <span class="s2">&quot;sh&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;$WAIT_SCRIPT&quot;</span><span class="p">],</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Run external script to allow server process to finish before using imported data&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;liftOver1&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;input&quot;</span><span class="p">:</span>     <span class="s2">&quot;$BED_PATH_SAMPLE&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;mapping&quot;</span><span class="p">:</span>   <span class="s2">&quot;$GENOME_MAPPING&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;minMatch&quot;</span><span class="p">:</span>  <span class="mf">0.95</span><span class="p">,</span>
+                <span class="nt">&quot;out_file1&quot;</span><span class="p">:</span> <span class="s2">&quot;$MAPPED_PATH_SAMPLE&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;out_file2&quot;</span><span class="p">:</span> <span class="s2">&quot;$UNMAPPED_PATH_SAMPLE&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 5.2 Map coordinates from hg18 to hg38&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;MEALR (tracks)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;yesSetPath&quot;</span><span class="p">:</span>      <span class="s2">&quot;$MAPPED_PATH_SAMPLE&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;noSetPath&quot;</span><span class="p">:</span>       <span class="s2">&quot;$MEALR_BACKGROUND_PATH&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;dbSelector&quot;</span><span class="p">:</span>      <span class="s2">&quot;$ENSEMBL_104_SELECTOR&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;profilePath&quot;</span><span class="p">:</span>     <span class="s2">&quot;$MEALR_TRANSFAC_PROFILE&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;maxPosCoef&quot;</span><span class="p">:</span>      <span class="mi">150</span><span class="p">,</span>
+                <span class="nt">&quot;maxComplexity&quot;</span><span class="p">:</span>   <span class="mf">0.5</span><span class="p">,</span>
+                <span class="nt">&quot;complexityInc&quot;</span><span class="p">:</span>   <span class="mf">0.02</span><span class="p">,</span>
+                <span class="nt">&quot;maxUnimproved&quot;</span><span class="p">:</span>   <span class="mi">20</span><span class="p">,</span>
+                <span class="nt">&quot;scoresWithNoSet&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;output&quot;</span><span class="p">:</span>          <span class="s2">&quot;$MEALR_OUTPUT_PATH&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 6. Analyze target and background genomic regions using MEALR to find important PWMs&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;Select top rows&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;inputTable&quot;</span><span class="p">:</span>  <span class="s2">&quot;$MEALR_MOTIF_PATH&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;column&quot;</span><span class="p">:</span>      <span class="s2">&quot;Coefficient&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;types&quot;</span><span class="p">:</span>       <span class="p">[</span><span class="s2">&quot;Top&quot;</span><span class="p">],</span>
+                <span class="nt">&quot;topPercent&quot;</span><span class="p">:</span>  <span class="mf">100.0</span><span class="p">,</span>
+                <span class="nt">&quot;topCount&quot;</span><span class="p">:</span>    <span class="mi">50</span><span class="p">,</span>
+                <span class="nt">&quot;topMinCount&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+                <span class="nt">&quot;topTable&quot;</span><span class="p">:</span>    <span class="s2">&quot;$MEALR_TOP_PATH&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 7.1 Extract top 50 PWMs ranked by logistic regression coefficient&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;Matrices to molecules&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;sitesCollection&quot;</span><span class="p">:</span>      <span class="s2">&quot;$MEALR_TOP_PATH&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;siteModelsCollection&quot;</span><span class="p">:</span> <span class="s2">&quot;$MEALR_TRANSFAC_PROFILE&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;species&quot;</span><span class="p">:</span>              <span class="s2">&quot;$SPECIES&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;targetType&quot;</span><span class="p">:</span>           <span class="s2">&quot;Genes: Ensembl&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;outputTable&quot;</span><span class="p">:</span>          <span class="s2">&quot;$MEALR_TOP_GENE_PATH&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 7.2 Convert PWMs to factor genes&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;Venn diagrams&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;table1Path&quot;</span><span class="p">:</span> <span class="s2">&quot;$MAPPED_GENE_PATH_ALL&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;table1Name&quot;</span><span class="p">:</span> <span class="s2">&quot;Genes near TAL1 sites&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;table2Path&quot;</span><span class="p">:</span> <span class="s2">&quot;$MEALR_TOP_GENE_PATH&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;table2Name&quot;</span><span class="p">:</span> <span class="s2">&quot;MEALR transcription factors&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;simple&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+                <span class="nt">&quot;output&quot;</span><span class="p">:</span>     <span class="s2">&quot;$MEALR_VENN_PATH&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 8 Intersect factors identified by MEALR and genes with nearby TAL1 ChIP-seq sites&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>     <span class="s2">&quot;get&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;table&quot;</span><span class="p">:</span>  <span class="s2">&quot;$GRN_FACTOR_PATH&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;toFile&quot;</span><span class="p">:</span> <span class="s2">&quot;grn_factors.json&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 9.1 Download table with potential GRN factors to local file&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>     <span class="s2">&quot;external&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;bin&quot;</span><span class="p">:</span>    <span class="s2">&quot;python3&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;$PWM_ID_SCRIPT&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 9.2 Run external script to create PWM table&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span> <span class="s2">&quot;imPort&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;file&quot;</span><span class="p">:</span> <span class="s2">&quot;grn_pwms.tsv&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;$MEALR_OUTPUT_PATH&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;importer&quot;</span><span class="p">:</span> <span class="s2">&quot;Tabular (*.txt, *.xls, *.tab, etc.)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;columnForID&quot;</span><span class="p">:</span> <span class="s2">&quot;PWM&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;tableType&quot;</span><span class="p">:</span>   <span class="s2">&quot;Matrices: TRANSFAC&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;species&quot;</span><span class="p">:</span>     <span class="s2">&quot;Human (Homo sapiens)&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 9.3 Import PWM table created by external script&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span> <span class="s2">&quot;external&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;showOutput&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;bin&quot;</span><span class="p">:</span> <span class="s2">&quot;sh&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;$WAIT_SCRIPT&quot;</span><span class="p">],</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Run external script to allow server process to finish before using imported data&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;Create profile from site model table&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;table&quot;</span><span class="p">:</span>   <span class="s2">&quot;$GRN_PWM_PATH&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;profile&quot;</span><span class="p">:</span> <span class="s2">&quot;$GRN_TRANSFAC_PROFILE&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;outputProfile&quot;</span><span class="p">:</span>  <span class="s2">&quot;$GRN_PWM_PROFILE&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 9.4 Create Match(TM) profile for PWMs of potential GRN factors&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;TRANSFAC(R) Match(TM) for tracks&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;sequencePath&quot;</span><span class="p">:</span>      <span class="s2">&quot;$MAPPED_PATH_ALL&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;dbSelector&quot;</span><span class="p">:</span>        <span class="s2">&quot;$ENSEMBL_104_SELECTOR&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;profilePath&quot;</span><span class="p">:</span>       <span class="s2">&quot;$GRN_PWM_PROFILE&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;withoutDuplicates&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nt">&quot;ignoreCore&quot;</span><span class="p">:</span>        <span class="kc">true</span><span class="p">,</span>
+                <span class="nt">&quot;output&quot;</span><span class="p">:</span>            <span class="s2">&quot;$GRN_MATCH_PATH&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 9.5 Predict binding sites of GRN factors in TAL1-bound regions&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>     <span class="s2">&quot;external&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;bin&quot;</span><span class="p">:</span>    <span class="s2">&quot;python3&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;$TAL1_GENE_SCRIPT&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 10.1 Run external script to prepare TAL1 gene table&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span> <span class="s2">&quot;imPort&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;file&quot;</span><span class="p">:</span> <span class="s2">&quot;tal1.tsv&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;$MEALR_OUTPUT_PATH&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;importer&quot;</span><span class="p">:</span> <span class="s2">&quot;Tabular (*.txt, *.xls, *.tab, etc.)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;columnForID&quot;</span><span class="p">:</span> <span class="s2">&quot;ID&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;tableType&quot;</span><span class="p">:</span>   <span class="s2">&quot;Genes: Ensembl&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;species&quot;</span><span class="p">:</span>     <span class="s2">&quot;Human (Homo sapiens)&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 10.2 Import TAL1 gene table&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span> <span class="s2">&quot;external&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;showOutput&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;bin&quot;</span><span class="p">:</span> <span class="s2">&quot;sh&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;$WAIT_SCRIPT&quot;</span><span class="p">],</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Run external script to allow server process to finish before using imported data&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;Gene set to track&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;sourcePath&quot;</span><span class="p">:</span> <span class="s2">&quot;$TAL1_GENE_PATH&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;species&quot;</span><span class="p">:</span>    <span class="s2">&quot;$SPECIES&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;from&quot;</span><span class="p">:</span>       <span class="mi">2000</span><span class="p">,</span>
+                <span class="nt">&quot;to&quot;</span><span class="p">:</span>         <span class="mi">1000</span><span class="p">,</span>
+                <span class="nt">&quot;destPath&quot;</span><span class="p">:</span>   <span class="s2">&quot;$TAL1_TRACK_PATH&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 10.3 Create track of genomic region around TAL1 TSS (promoter)&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>      <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;method&quot;</span><span class="p">:</span>  <span class="s2">&quot;TRANSFAC(R) Match(TM) for tracks&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;workflow&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;wait&quot;</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;sequencePath&quot;</span><span class="p">:</span>      <span class="s2">&quot;$TAL1_TRACK_PATH&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;dbSelector&quot;</span><span class="p">:</span>        <span class="s2">&quot;$ENSEMBL_104_SELECTOR&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;profilePath&quot;</span><span class="p">:</span>       <span class="s2">&quot;$GRN_PWM_PROFILE&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;withoutDuplicates&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nt">&quot;ignoreCore&quot;</span><span class="p">:</span>        <span class="kc">true</span><span class="p">,</span>
+                <span class="nt">&quot;output&quot;</span><span class="p">:</span>            <span class="s2">&quot;$TAL1_MATCH_PATH&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 10.4 Predict binding sites of GRN factors in TAL1 promoter&quot;</span>
+        <span class="p">},</span>
+
+        <span class="p">{</span>
+            <span class="nt">&quot;do&quot;</span><span class="p">:</span>       <span class="s2">&quot;export&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;file&quot;</span><span class="p">:</span>     <span class="s2">&quot;TAL1_grn_pwm_sites.bed&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;path&quot;</span><span class="p">:</span>     <span class="s2">&quot;$TAL1_MATCH_PATH&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;exporter&quot;</span><span class="p">:</span> <span class="s2">&quot;BED format (*.bed)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Step 10.5 Export genomic locations of predicted sites for GRN factors around TAL1 TSS&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../chipseq_analysis_java/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Java program
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            &copy; 2022 geneXplain GmbH, Wolfenbuettel, Germany
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>

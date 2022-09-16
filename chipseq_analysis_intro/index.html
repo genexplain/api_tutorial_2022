@@ -1,0 +1,770 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="geneXplain platform API tutorial 2022">
+      
+      
+      
+        <meta name="author" content="pstegma">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Analysis overview - Tutorial for geneXplain platform APIs 2022</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview-of-the-analysis-workflow" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Tutorial for geneXplain platform APIs 2022" class="md-header-nav__button md-logo" aria-label="Tutorial for geneXplain platform APIs 2022">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Tutorial for geneXplain platform APIs 2022
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Analysis overview
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/genexplain/api_tutorial_2022/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Tutorial for geneXplain platform APIs 2022" class="md-nav__button md-logo" aria-label="Tutorial for geneXplain platform APIs 2022">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Tutorial for geneXplain platform APIs 2022
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/genexplain/api_tutorial_2022/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../first_example/" class="md-nav__link">
+      A first example&#58; Enrichment of gene functions in a gene set
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../basics/" class="md-nav__link">
+      Platform tools and parameters
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../api_overview/" class="md-nav__link">
+      Overview of APIs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Example workflow&#58; Analysis of ChIP-seq data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Example workflow&#58; Analysis of ChIP-seq data" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Example workflow&#58; Analysis of ChIP-seq data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Analysis overview
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Analysis overview
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-steps" class="md-nav__link">
+    Workflow steps
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-a-sampling-tal1-binding-sites" class="md-nav__link">
+    Step A. Sampling TAL1 binding sites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-import-and-mapping-of-tal1-bound-genomic-regions" class="md-nav__link">
+    Step 1. Import and mapping of TAL1-bound genomic regions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-mapping-tal1-bound-genomic-regions-to-nearby-genes" class="md-nav__link">
+    Step 2. Mapping TAL1-bound genomic regions to nearby genes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-functional-enrichment-analysis-of-genes-near-tal1-bound-regions" class="md-nav__link">
+    Step 3. Functional enrichment analysis of genes near TAL1-bound regions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-sampling-genomic-regions-not-bound-by-tal1" class="md-nav__link">
+    Step 4. Sampling genomic regions not bound by TAL1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-import-and-mapping-of-tal1-binding-site-subset" class="md-nav__link">
+    Step 5. Import and mapping of TAL1 binding site subset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-selection-of-important-pwm-models-using-mealr" class="md-nav__link">
+    Step 6. Selection of important PWM models using MEALR
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-extraction-of-binding-transcription-factors" class="md-nav__link">
+    Step 7. Extraction of binding transcription factors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-8-intersection-of-potentially-tal1-regulated-genes-and-mealr-tfs" class="md-nav__link">
+    Step 8. Intersection of potentially TAL1-regulated genes and MEALR TFs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-9-prediction-of-binding-sites-of-identified-tfs-in-tal1-bound-genomic-regions" class="md-nav__link">
+    Step 9. Prediction of binding sites of identified TFs in TAL1-bound genomic regions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-10-prediction-of-binding-sites-of-identified-tfs-around-tal1-transcription-start-site" class="md-nav__link">
+    Step 10. Prediction of binding sites of identified TFs around TAL1 transcription start site
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#figure-2-workflow-overview" class="md-nav__link">
+    Figure 2. Workflow overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scientific-results-of-the-tutorial-workflow" class="md-nav__link">
+    Scientific results of the tutorial workflow
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../chipseq_analysis_r/" class="md-nav__link">
+      geneXplainR
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../chipseq_analysis_java/" class="md-nav__link">
+      Java program
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../chipseq_analysis_json/" class="md-nav__link">
+      JSON interface
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-steps" class="md-nav__link">
+    Workflow steps
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-a-sampling-tal1-binding-sites" class="md-nav__link">
+    Step A. Sampling TAL1 binding sites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-import-and-mapping-of-tal1-bound-genomic-regions" class="md-nav__link">
+    Step 1. Import and mapping of TAL1-bound genomic regions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-mapping-tal1-bound-genomic-regions-to-nearby-genes" class="md-nav__link">
+    Step 2. Mapping TAL1-bound genomic regions to nearby genes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-functional-enrichment-analysis-of-genes-near-tal1-bound-regions" class="md-nav__link">
+    Step 3. Functional enrichment analysis of genes near TAL1-bound regions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-sampling-genomic-regions-not-bound-by-tal1" class="md-nav__link">
+    Step 4. Sampling genomic regions not bound by TAL1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-import-and-mapping-of-tal1-binding-site-subset" class="md-nav__link">
+    Step 5. Import and mapping of TAL1 binding site subset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-selection-of-important-pwm-models-using-mealr" class="md-nav__link">
+    Step 6. Selection of important PWM models using MEALR
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-extraction-of-binding-transcription-factors" class="md-nav__link">
+    Step 7. Extraction of binding transcription factors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-8-intersection-of-potentially-tal1-regulated-genes-and-mealr-tfs" class="md-nav__link">
+    Step 8. Intersection of potentially TAL1-regulated genes and MEALR TFs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-9-prediction-of-binding-sites-of-identified-tfs-in-tal1-bound-genomic-regions" class="md-nav__link">
+    Step 9. Prediction of binding sites of identified TFs in TAL1-bound genomic regions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-10-prediction-of-binding-sites-of-identified-tfs-around-tal1-transcription-start-site" class="md-nav__link">
+    Step 10. Prediction of binding sites of identified TFs around TAL1 transcription start site
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#figure-2-workflow-overview" class="md-nav__link">
+    Figure 2. Workflow overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scientific-results-of-the-tutorial-workflow" class="md-nav__link">
+    Scientific results of the tutorial workflow
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/genexplain/api_tutorial_2022/edit/master/docs/chipseq_analysis_intro.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="overview-of-the-analysis-workflow">Overview of the analysis workflow</h1>
+<p>The main tutorial example is a workflow to infer possible components of
+a gene regulatory network on the basis of <a href="https://en.wikipedia.org/wiki/ChIP_sequencing">ChIP-seq</a> data.
+The workflow is depicted in <a href="#figure-2-workflow-overview">Figure 2</a>.
+Starting point of the analysis is the BED file containing genomic locations
+of TAL1-bound regions in Jurkat cells discovered and published by <a href="https://doi.org/10.1038/emboj.2010.342">Palii et al.</a>.
+The <a href="https://www.ncbi.nlm.nih.gov/geo/">GEO repository</a> hosts the ChIP-seq data of the study under series accession 
+<a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE25000">GSE25000</a>.
+The tutorial focuses on the TAL1-bound genomic locations reported by the study authors
+which can be downloaded <a href="https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSM614003&amp;format=file&amp;file=GSM614003%5Fjurkat%2Etal1%2Ebed%2Egz">here</a>.</p>
+<p>Source code that implements the workflow is provided for <a href="../chipseq_analysis_r/">geneXplainR</a> and
+<a href="../chipseq_analysis_java/">the Java API</a>. The corresponding JSON configuration file
+for the <em>exec</em> commandline interface can be found <a href="../chipseq_analysis_json/">here</a>.</p>
+<h2 id="workflow-steps">Workflow steps</h2>
+<h3 id="step-a-sampling-tal1-binding-sites">Step A. Sampling TAL1 binding sites</h3>
+<p>In a preparatory step we extracted a sample of 1000 TAL1 bound regions
+for subsequent MEALR analysis. The sample was drawn using the <em>shuf</em> and
+<em>head</em> programs from <a href="https://www.gnu.org/software/coreutils/">GNU coreutils</a>.
+The file <em>GSM614003_jurkat.tal1_1000.bed</em> containing the sampled sites
+is part of the material for this tutorial.</p>
+<h3 id="step-1-import-and-mapping-of-tal1-bound-genomic-regions">Step 1. Import and mapping of TAL1-bound genomic regions</h3>
+<p>Step 1 imports the BED file with TAL1-bound genomic regions into the
+platform workspace. Since the genomic regions reported in the original
+study referred to human genome sequence version <em>hg18</em>, we then use
+the Galaxy tool <em>Lift over</em> to convert the hg18 coordinates to hg38.</p>
+<h3 id="step-2-mapping-tal1-bound-genomic-regions-to-nearby-genes">Step 2. Mapping TAL1-bound genomic regions to nearby genes</h3>
+<p>Step 2 assigns the hg38 coordinates of TAL1-bound regions with nearby genes using
+the platform tool <em>Track to gene set</em>.</p>
+<h3 id="step-3-functional-enrichment-analysis-of-genes-near-tal1-bound-regions">Step 3. Functional enrichment analysis of genes near TAL1-bound regions</h3>
+<p>Genes located in the vicinity of TAL1 binding sites are analyzed for
+enrichment of certain functions on the basis of <a href="http://geneontology.org">Gene Ontology</a>
+annotation, <a href="https://reactome.org">Reactome</a> pathways, as well as for
+enrichment of known human disease biomarkers annotated in the <a href="https://genexplain.com/humanpsd/">HumanPSD</a>.
+This is done using the <em>Functional classification</em> platform tool.
+Please note that the HumanPSD biomarker resource requires a license.</p>
+<h3 id="step-4-sampling-genomic-regions-not-bound-by-tal1">Step 4. Sampling genomic regions not bound by TAL1</h3>
+<p>MEALR requires a background set of genomic regions to find a discriminating
+pattern of PWM scores. The platform tool <em>Create random track</em> samples
+regions around transcription start sites of genes that do not overlap
+with an input set of genomic regions, in this case the study set of
+TAL1 binding sites, and with the same length distribution.</p>
+<h3 id="step-5-import-and-mapping-of-tal1-binding-site-subset">Step 5. Import and mapping of TAL1 binding site subset</h3>
+<p>The set of TAL1 binding sites sampled in <a href="#step-a-sampling-tal1-binding-sites">Step A</a> represents the target
+set of genomic regions which we import and convert to hg38 coordinates as 
+in <a href="#step-1-import-and-mapping-of-tal1-bound-genomic-regions">Step 1</a>.</p>
+<h3 id="step-6-selection-of-important-pwm-models-using-mealr">Step 6. Selection of important PWM models using MEALR</h3>
+<p>The target and background set of genomic coordinates prepared in the previous
+two steps are analyzed with <em>MEALR (tracks)</em> using TRANSFAC&reg; PWMs from the 
+profile <em>vertebrate_human_p0.05_non3d</em>.
+This profile contains PWM models defined for vertebrate transcription factors
+omitting those that have been derived theoretically on the basis of molecular
+structures of protein-DNA complexes using <a href="https://doi.org/10.1093/nar/gks551">3DTF</a>.</p>
+<h3 id="step-7-extraction-of-binding-transcription-factors">Step 7. Extraction of binding transcription factors</h3>
+<p>Possible co-binding factors are obtained by firstly selecting the top 50 PWMs
+with positive model coefficients using the <em>Select top rows</em> tool followed
+by extracting corresponding transcription factor genes using the
+<em>Matrices to molecules</em> tool.</p>
+<h3 id="step-8-intersection-of-potentially-tal1-regulated-genes-and-mealr-tfs">Step 8. Intersection of potentially TAL1-regulated genes and MEALR TFs</h3>
+<p>The gene regulatory network workflow is completed by intersecting the
+transcription factors identified by MEALR with potentially TAL1-regulated
+genes (<a href="#step-2-mapping-tal1-bound-genomic-regions-to-nearby-genes">Step 2</a>) using
+the <em>Venn diagrams</em> tool. The resulting set of transcription factors are inferred to
+be both regulatory targets of TAL1 as well as co-regulators.</p>
+<h3 id="step-9-prediction-of-binding-sites-of-identified-tfs-in-tal1-bound-genomic-regions">Step 9. Prediction of binding sites of identified TFs in TAL1-bound genomic regions</h3>
+<p>In order to conduct the last two steps of the tutorial workflow we prepare
+a list of PWMs representing TFs identified in Step 8 and, after its import into
+the platform workspace, create a corresponding PWM profile using the
+<em>Create profile from site model table</em> tool. The score cutoffs are
+taken from the <em>vertebrate_human_p0.001_non3d</em> profile which adjusts
+scores to a <em>p</em>-value of 0.001 estimated for a sequences with the same dinucleotide
+composition as human promoter regions.
+The profile for <em>GRN transcription factors</em> is then used to predict precise
+binding locations of these transcription factors within TAL1 ChIP-seq regions using the
+<em>TRANSFAC(R) Match(TM) for tracks</em> tool.</p>
+<h3 id="step-10-prediction-of-binding-sites-of-identified-tfs-around-tal1-transcription-start-site">Step 10. Prediction of binding sites of identified TFs around TAL1 transcription start site</h3>
+<p>Binding sites for inferred TFs are furthermore predicted in the genomic region around the
+TAL1 transcription start site. As the study ChIP-seq regions did not contain a
+TAL1-bound region near the TAL1 gene, we import a simple table containing the TAL1
+Ensembl id and extract the region around the TSS using the <em>Gene set to track</em> tool,
+followed by Match analysis of the sequence as in Step 9.</p>
+<h2 id="figure-2-workflow-overview">Figure 2. Workflow overview</h2>
+<p><img alt="Workflow overview" src="../figures/gxp_chipseq_analysis_workflow.png" /></p>
+<h2 id="scientific-results-of-the-tutorial-workflow">Scientific results of the tutorial workflow</h2>
+<p>According to the output table named <em>MEALR_positive_coefficients</em> MEALR
+assigned highest coefficients to TAL1 PWM models (V$TAL1_05 and V$TAL1GATA1_02).
+and binding factors of important PWMs, such as Runt and GATA motifs, coincide 
+with those reported in the <a href="https://doi.org/10.1038/emboj.2010.342">original publication</a>.
+The TAL1-regulatory network inferred by the workflow includes the transcription 
+factors ERG, GATA2, LEF1, MAX, MYB, RUNX1, RUNX2 and TCF7. GATA2, TAL1 and ERG have been
+reported as components of a regulatory circuit by <a href="https://doi.org/10.1182/blood.2020009707">Thoms et al.</a>.
+The regulatory link between RUNX1 and MYB in leukemia has been
+described by <a href="https://doi.org/10.1182/blood-2017-03-775536">Choi et al.</a> and
+the importance of MYB for leukemic pathology has been elaborated on by <a href="https://doi.org/10.1101/gad.17269211">Zuber et al.</a>.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../api_overview/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Overview of APIs
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../chipseq_analysis_r/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                geneXplainR
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            &copy; 2022 geneXplain GmbH, Wolfenbuettel, Germany
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>

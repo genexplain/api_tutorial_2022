@@ -1,0 +1,1635 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="geneXplain platform API tutorial 2022">
+      
+      
+      
+        <meta name="author" content="pstegma">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Overview of APIs - Tutorial for geneXplain platform APIs 2022</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview-of-r-java-and-json-interfaces" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Tutorial for geneXplain platform APIs 2022" class="md-header-nav__button md-logo" aria-label="Tutorial for geneXplain platform APIs 2022">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Tutorial for geneXplain platform APIs 2022
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Overview of APIs
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/genexplain/api_tutorial_2022/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Tutorial for geneXplain platform APIs 2022" class="md-nav__button md-logo" aria-label="Tutorial for geneXplain platform APIs 2022">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Tutorial for geneXplain platform APIs 2022
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/genexplain/api_tutorial_2022/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../first_example/" class="md-nav__link">
+      A first example&#58; Enrichment of gene functions in a gene set
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../basics/" class="md-nav__link">
+      Platform tools and parameters
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Overview of APIs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Overview of APIs
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#main-api-methods" class="md-nav__link">
+    Main API methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Main API methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods-in-r-java-apis-and-json-interface" class="md-nav__link">
+    Methods in R, Java APIs and JSON interface
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genexplainr-specific-functions" class="md-nav__link">
+    geneXplainR-specific functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genexplain-api-specific-java-method" class="md-nav__link">
+    genexplain-api-specific Java method
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commandline-applications-of-genexplain-api" class="md-nav__link">
+    Commandline applications of genexplain-api
+  </a>
+  
+    <nav class="md-nav" aria-label="Commandline applications of genexplain-api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apps-listing-available-tools" class="md-nav__link">
+    apps - Listing available tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters-parameter-descriptions-for-platform-and-galaxy-tools" class="md-nav__link">
+    parameters - Parameter descriptions for platform and Galaxy tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#importer-and-exporter-descriptions-of-data-importers-exporters-and-their-parameters" class="md-nav__link">
+    importer and exporter - Descriptions of data importers, exporters and their parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exec-executing-tasks-using-the-json-interface" class="md-nav__link">
+    exec - Executing tasks using the JSON interface
+  </a>
+  
+    <nav class="md-nav" aria-label="exec - Executing tasks using the JSON interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-executors" class="md-nav__link">
+    Main executors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analyze" class="md-nav__link">
+    analyze
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch" class="md-nav__link">
+    branch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createfolder" class="md-nav__link">
+    createFolder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    export
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external" class="md-nav__link">
+    external
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    get
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    imPort
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#itemparameters" class="md-nav__link">
+    itemParameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jobstatus" class="md-nav__link">
+    jobStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listitems" class="md-nav__link">
+    listItems
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#put" class="md-nav__link">
+    put
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setparameters" class="md-nav__link">
+    setParameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Example workflow&#58; Analysis of ChIP-seq data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Example workflow&#58; Analysis of ChIP-seq data" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Example workflow&#58; Analysis of ChIP-seq data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../chipseq_analysis_intro/" class="md-nav__link">
+      Analysis overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../chipseq_analysis_r/" class="md-nav__link">
+      geneXplainR
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../chipseq_analysis_java/" class="md-nav__link">
+      Java program
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../chipseq_analysis_json/" class="md-nav__link">
+      JSON interface
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#main-api-methods" class="md-nav__link">
+    Main API methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Main API methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods-in-r-java-apis-and-json-interface" class="md-nav__link">
+    Methods in R, Java APIs and JSON interface
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genexplainr-specific-functions" class="md-nav__link">
+    geneXplainR-specific functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genexplain-api-specific-java-method" class="md-nav__link">
+    genexplain-api-specific Java method
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commandline-applications-of-genexplain-api" class="md-nav__link">
+    Commandline applications of genexplain-api
+  </a>
+  
+    <nav class="md-nav" aria-label="Commandline applications of genexplain-api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apps-listing-available-tools" class="md-nav__link">
+    apps - Listing available tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters-parameter-descriptions-for-platform-and-galaxy-tools" class="md-nav__link">
+    parameters - Parameter descriptions for platform and Galaxy tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#importer-and-exporter-descriptions-of-data-importers-exporters-and-their-parameters" class="md-nav__link">
+    importer and exporter - Descriptions of data importers, exporters and their parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exec-executing-tasks-using-the-json-interface" class="md-nav__link">
+    exec - Executing tasks using the JSON interface
+  </a>
+  
+    <nav class="md-nav" aria-label="exec - Executing tasks using the JSON interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-executors" class="md-nav__link">
+    Main executors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analyze" class="md-nav__link">
+    analyze
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch" class="md-nav__link">
+    branch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createfolder" class="md-nav__link">
+    createFolder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    export
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external" class="md-nav__link">
+    external
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    get
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    imPort
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#itemparameters" class="md-nav__link">
+    itemParameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jobstatus" class="md-nav__link">
+    jobStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listitems" class="md-nav__link">
+    listItems
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#put" class="md-nav__link">
+    put
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setparameters" class="md-nav__link">
+    setParameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/genexplain/api_tutorial_2022/edit/master/docs/api_overview.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="overview-of-r-java-and-json-interfaces">Overview of R, Java and JSON interfaces</h1>
+<h2 id="main-api-methods">Main API methods</h2>
+<p>The programming and JSON interfaces provide a common set of functionality to carry out data 
+management and analysis tasks. The <a href="#methods-in-r-java-apis-and-json-interface">following table</a> gives an
+overview of available functions.</p>
+<h3 id="methods-in-r-java-apis-and-json-interface">Methods in R, Java APIs and JSON interface</h3>
+<table>
+<thead>
+<tr>
+<th>geneXplainR</th>
+<th>genexplain-api Java method</th>
+<th>JSON executor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gx.analysis</td>
+<td>GxHttpClient.analyze (<code>isWorkflow: false</code>)</td>
+<td>analyze (<code>workflow: false</code>)</td>
+<td>Runs a platform analysis method with specified parameters</td>
+</tr>
+<tr>
+<td>gx.analysis.list</td>
+<td>GxHttpClient.listApplications</td>
+<td>apps, listItems (<code>type applications</code>)</td>
+<td>Lists available platform tools</td>
+</tr>
+<tr>
+<td>gx.analysis.parameters</td>
+<td>GxHttpClient.getAnalysisParameters</td>
+<td>itemParameters (<code>type application</code>)</td>
+<td>Lists parameters for a platform tool</td>
+</tr>
+<tr>
+<td>gx.createFolder</td>
+<td>GxHttpClient.createFolder</td>
+<td>createFolder</td>
+<td>Creates a folder in the platform workspace</td>
+</tr>
+<tr>
+<td>gx.createProject</td>
+<td>GxHttpClient.createProject</td>
+<td></td>
+<td>Creates a project in the platform workspace</td>
+</tr>
+<tr>
+<td>gx.delete</td>
+<td>GxHttpClient.deleteElement</td>
+<td></td>
+<td>Deletes specified folder or data item</td>
+</tr>
+<tr>
+<td>gx.export</td>
+<td>GxHttpClient.export</td>
+<td>export</td>
+<td>Exports data using a dedicated exporter</td>
+</tr>
+<tr>
+<td>gx.export.parameters</td>
+<td>GxHttpClient.getExporterParameters</td>
+<td>exporter (with specified <code>exporter</code>), itemParameters (<code>type exporter</code>)</td>
+<td>Lists parameters for an exporter and the export item</td>
+</tr>
+<tr>
+<td>gx.exporters</td>
+<td>GxHttpClient.listExporters</td>
+<td>exporter, listItems (<code>type exporters</code>)</td>
+<td>Lists available exporters</td>
+</tr>
+<tr>
+<td>gx.get</td>
+<td>GxHttpClient.getTable</td>
+<td>get</td>
+<td>Gets specified table item</td>
+</tr>
+<tr>
+<td>gx.import</td>
+<td>GxHttpClient.imPort</td>
+<td>imPort</td>
+<td>Imports a data file using a dedicated importer</td>
+</tr>
+<tr>
+<td>gx.import.parameters</td>
+<td>GxHttpClient.getImporterParameters</td>
+<td>importer (with specified <code>importer</code>), itemParameters (<code>type importer</code>)</td>
+<td>Lists parameters for an importer and the import folder</td>
+</tr>
+<tr>
+<td>gx.importers</td>
+<td>GxHttpClient.listImporters</td>
+<td>importer, listItems (<code>type importers</code>)</td>
+<td>Lists available importers</td>
+</tr>
+<tr>
+<td>gx.isElement</td>
+<td>GxHttpClient.existsElement</td>
+<td></td>
+<td>Checks whether a workspace element exists given its platform path</td>
+</tr>
+<tr>
+<td>gx.job.info</td>
+<td>GxHttpClient.getJobStatus</td>
+<td>jobStatus</td>
+<td>Gets the status for a job id</td>
+</tr>
+<tr>
+<td>gx.login</td>
+<td>GxHttpConnection.login</td>
+<td></td>
+<td>Signs into a platform account to start a session</td>
+</tr>
+<tr>
+<td>gx.logout</td>
+<td>GxHttpConnection.logout</td>
+<td></td>
+<td>Signs out of a platform account to end a session</td>
+</tr>
+<tr>
+<td>gx.ls</td>
+<td>GxHttpClient.list</td>
+<td></td>
+<td>Lists contents of a platform folder</td>
+</tr>
+<tr>
+<td>gx.put</td>
+<td>GxHttpClient.putTable</td>
+<td>put</td>
+<td>Uploads a data table into specified folder</td>
+</tr>
+<tr>
+<td>gx.workflow</td>
+<td>GxHttpClient.analyze (<code>isWorkflow: true</code>)</td>
+<td>analyze (<code>workflow: true</code>)</td>
+<td>Runs a platform workflow</td>
+</tr>
+</tbody>
+</table>
+<h3 id="genexplainr-specific-functions">geneXplainR-specific functions</h3>
+<p>The following functions were specifically implemented in the geneXplainR package.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gx.classifyChipSeqTargets</td>
+<td>Runs the workflow <a href="https://platform.genexplain.com/#de=analyses/Workflows/TRANSPATH/ChIP-Seq%20-%20Identify%20and%20classify%20target%20genes%20(TRANSPATH(R))">ChIP-Seq - Identify and classify target genes (TRANSPATH(R))</a></td>
+</tr>
+<tr>
+<td>gx.ebarraysWorkflow</td>
+<td>Runs the workflow <a href="https://platform.genexplain.com/#de=analyses/Workflows/Common/Compute%20differentially%20expressed%20genes%20using%20EBarrays">Compute differentially expressed genes using EBarrays</a></td>
+</tr>
+<tr>
+<td>gx.enrichedTFBSGenes</td>
+<td>Runs the workflow <a href="https://platform.genexplain.com/#de=analyses/Workflows/TRANSFAC/Identify%20enriched%20motifs%20in%20promoters%20(TRANSFAC(R))">Identify enriched motifs in promoters (TRANSFAC(R))</a></td>
+</tr>
+<tr>
+<td>gx.enrichedUpstreamAnalysis</td>
+<td>Runs the workflow <a href="https://platform.genexplain.com/#de=analyses/Workflows/TRANSFAC%20and%20TRANSPATH/Enriched%20upstream%20analysis%20(TRANSFAC(R)%20and%20TRANSPATH(R))">Enriched upstream analysis (TRANSFAC(R) and TRANSPATH(R))</a></td>
+</tr>
+<tr>
+<td>gx.explainMyGenes</td>
+<td>Runs the workflow <a href="https://platform.genexplain.com/#de=analyses/Workflows/Common/Explain%20my%20genes">Explain my genes</a></td>
+</tr>
+<tr>
+<td>gx.importBedFile</td>
+<td>Imports a BED file into the platform workspace</td>
+</tr>
+<tr>
+<td>gx.importTable</td>
+<td>Imports a data table into the platform workspace</td>
+</tr>
+<tr>
+<td>gx.limmaWorkflow</td>
+<td>Computes differentially expressed genes between all condition pairs using Limma</td>
+</tr>
+<tr>
+<td>gx.mapGenesToOntologies</td>
+<td>Runs the workflow <a href="https://platform.genexplain.com/#de=analyses/Workflows/Common/Mapping%20to%20ontologies%20(Gene%20table)">Mapping to ontologies (Gene table)</a></td>
+</tr>
+<tr>
+<td>gx.searchRegulators</td>
+<td>Searches for signal transduction regulators of input proteins</td>
+</tr>
+<tr>
+<td>gx.trackToGeneSet</td>
+<td>Maps one or more tracks to genes of the most recent Ensembl release</td>
+</tr>
+<tr>
+<td>gx.upstreamAnalysisTransfacGeneWays</td>
+<td>Runs the workflow <a href="https://platform.genexplain.com/#de=analyses/Workflows/TRANSFAC/Upstream%20analysis%20(TRANSFAC(R)%20and%20GeneWays)">Upstream analysis (TRANSFAC(R) and GeneWays)</a></td>
+</tr>
+<tr>
+<td>gx.upstreamAnalysisTransfacTranspath</td>
+<td>Runs the workflow <a href="https://platform.genexplain.com/#de=analyses/Workflows/TRANSFAC%20and%20TRANSPATH/Upstream%20analysis%20(TRANSFAC(R)%20and%20TRANSPATH(R))">Upstream analysis (TRANSFAC(R) and TRANSPATH(R))</a></td>
+</tr>
+<tr>
+<td>gx.vennDiagrams</td>
+<td>Creates a Venn diagram for up to three tables</td>
+</tr>
+</tbody>
+</table>
+<h3 id="genexplain-api-specific-java-method">genexplain-api-specific Java method</h3>
+<p>The Java API provides the method <code>com.genexplain.api.core.GxHttpClient.importTable</code> to conveniently 
+upload a data table into the platform workspace.</p>
+<h2 id="commandline-applications-of-genexplain-api">Commandline applications of genexplain-api</h2>
+<p>Contents of this section can also be found in the <a href="https://genexplain.github.io/genexplain-api/">genexplain-api documentation</a>. 
+To focus on general utilities, this presentation does not cover the <em>example</em> and <em>regulator-search</em> applications
+which are described <a href="https://genexplain.github.io/genexplain-api/json_interface/#example-example-applications-using-the-java-api">here</a> and 
+<a href="https://genexplain.github.io/genexplain-api/json_interface/#regulator-search-regulator-and-effector-search-tool">here</a>.</p>
+<h3 id="apps-listing-available-tools">apps - Listing available tools</h3>
+<p>The application <em>apps</em> produces a listing of the available analysis tools on a certain server. It takes a single argument that specifies
+a file containing a JSON object with several properties of which only the <em>server</em> property is required. Example output:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>genexplain-api$ java -jar build/libs/genexplain-api-1.0.jar apps input.json 
+INFO  com.genexplain.api.app.APIRunner - Running <span class="nb">command</span> apps
+Data manipulation/Annotate diagram
+Data manipulation/Annotate table
+Data manipulation/Annotate track with genes
+Data manipulation/Composite module to proteins
+Data manipulation/Convert table
+Data manipulation/Convert table to track
+Data manipulation/Convert table via homology
+Data manipulation/Create folder
+Data manipulation/Create miRNA promoters
+Data manipulation/Create random track
+Data manipulation/Create tissue-specific promoter track
+Data manipulation/Create transcript region track
+Data manipulation/Filter one track by another
+Data manipulation/Filter table
+Data manipulation/Filter track by condition
+Data manipulation/Gene <span class="nb">set</span> to track
+<span class="o">[</span>...<span class="o">]</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>The parameters that can be specified with the JSON input file are described in the following table.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>server</strong></td>
+<td>Server URL to connect to</td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>Username to use for connection</td>
+</tr>
+<tr>
+<td><strong>password</strong></td>
+<td>Password that belongs to the username</td>
+</tr>
+<tr>
+<td><strong>withParameters</strong></td>
+<td>If <code>true</code> will produce tsv-table of tools and their parameters</td>
+</tr>
+<tr>
+<td><strong>withGalaxy</strong></td>
+<td>If <code>true</code> will also include tools integrated from Galaxy</td>
+</tr>
+<tr>
+<td><strong>outfile</strong></td>
+<td>Output file. Prints to standard output if <code>outfile</code> is absent or empty</td>
+</tr>
+<tr>
+<td><strong>connection</strong></td>
+<td>Package and name to locate a Java class to use for connection. This class must implement <em>com.genexplain.api.core.GxHttpConnection</em>.</td>
+</tr>
+<tr>
+<td><strong>client</strong></td>
+<td>Package and name to locate a Java class to use as platform client. This class must implement <em>com.genexplain.api.core.GxHttpClient</em>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="parameters-parameter-descriptions-for-platform-and-galaxy-tools">parameters - Parameter descriptions for platform and Galaxy tools</h3>
+<p>The <em>parameters</em> application fetches parameter descriptions in JSON format for one or more tools from a platform server. It takes a single argument that specifies
+a file containing a JSON object with several properties of which only the <em>server</em> property is required. The output is a JSON object containing the tool names
+as keys as the retrieved parameter descriptions as values.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>server</strong></td>
+<td>Server URL to connect to</td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>Username to use for connection</td>
+</tr>
+<tr>
+<td><strong>password</strong></td>
+<td>Password that belongs to the username</td>
+</tr>
+<tr>
+<td><strong>tools</strong></td>
+<td>JSON array with tool names</td>
+</tr>
+<tr>
+<td><strong>outfile</strong></td>
+<td>Output file. Prints to standard output is <code>outfile</code> is absent or empty</td>
+</tr>
+<tr>
+<td><strong>connection</strong></td>
+<td>Package and name to locate a Java class to use for connection. This class must implement <em>com.genexplain.api.core.GxHttpConnection</em>.</td>
+</tr>
+<tr>
+<td><strong>client</strong></td>
+<td>Package and name to locate a Java class to use as platform client. This class must implement <em>com.genexplain.api.core.GxHttpClient</em>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="importer-and-exporter-descriptions-of-data-importers-exporters-and-their-parameters">importer and exporter - Descriptions of data importers, exporters and their parameters</h3>
+<p>The <em>importer</em> and <em>exporter</em> tools present lists of available data importers or exporters or parameters
+for specified importer/exporter types. If provided with the <em>path</em> as well as <em>importer</em> or <em>exporter</em> names,
+the platform parameters for the specified type on given path are extracted. Otherwise (one of the parameters missing or empty)
+the list of available importers and exporters is printed to standard output or, if an <em>outfile</em> is specified, to
+an output file.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>server</strong></td>
+<td>Server URL to connect to</td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>Username to use for connection</td>
+</tr>
+<tr>
+<td><strong>password</strong></td>
+<td>Password that belongs to the username</td>
+</tr>
+<tr>
+<td><strong>path</strong></td>
+<td>Platform path. Exporters: the item to export, Importers: the path (usually a data folder) to import to</td>
+</tr>
+<tr>
+<td><strong>importer/exporter</strong></td>
+<td>Name of the importer/exporter to get parameters for</td>
+</tr>
+<tr>
+<td><strong>outfile</strong></td>
+<td>Output file. Prints to standard output is <code>outfile</code> is absent or empty</td>
+</tr>
+<tr>
+<td><strong>connection</strong></td>
+<td>Package and name to locate a Java class to use for connection. This class must implement <em>com.genexplain.api.core.GxHttpConnection</em>.</td>
+</tr>
+<tr>
+<td><strong>client</strong></td>
+<td>Package and name to locate a Java class to use as platform client. This class must implement <em>com.genexplain.api.core.GxHttpClient</em>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="exec-executing-tasks-using-the-json-interface">exec - Executing tasks using the JSON interface</h3>
+<p>The <em>exec</em> application provides a rich interface to interact with platform servers using JSON documents to configure tasks. 
+It is possible to create complex workflows including re-usable workflow templates, loops and conditional branch points.
+The <a href="https://genexplain.github.io/genexplain-api/json_hello_world/">Hello world-tutorial</a> demonstrates several ways of how to make use of this interface.
+The <em>exec</em> interface provides a set of executor functions that can be invoked within a task list. The available executors
+are described in detail below.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>server</strong></td>
+<td>Server URL to connect to</td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>Username to use for connection</td>
+</tr>
+<tr>
+<td><strong>password</strong></td>
+<td>Password that belongs to the username</td>
+</tr>
+<tr>
+<td><strong>verbose</strong></td>
+<td>Set <code>true</code> get more progress info</td>
+</tr>
+<tr>
+<td><strong>reconnect</strong></td>
+<td>Set <code>true</code> to allow attempts to reconnect in case the connection is interrupted</td>
+</tr>
+<tr>
+<td><strong>connection-class</strong></td>
+<td>Package and name of a Java class that implements com.genexplain.api.core.GxHttpConnection and will be used instead of the standard class</td>
+</tr>
+<tr>
+<td><strong>client-class</strong></td>
+<td>Package and name of a Java class that implements com.genexplain.api.core.GxHttpClient and will be used instead of the standard class</td>
+</tr>
+<tr>
+<td><strong>credentials</strong></td>
+<td>A file containing a JSON object with <code>user</code> and <code>password</code> properties</td>
+</tr>
+<tr>
+<td><strong>withoutConnect</strong></td>
+<td>Set <code>true</code> to execute tasks without connecting to a platform server</td>
+</tr>
+<tr>
+<td><strong>replaceStrings</strong></td>
+<td>A JSON array of two-element arrays defining string replacements</td>
+</tr>
+<tr>
+<td><strong>loadTasks</strong></td>
+<td>A JSON object of task templates or an array of file paths containing task template definitions</td>
+</tr>
+<tr>
+<td><strong>nextTask</strong></td>
+<td>A JSON object or array of the next task to perform</td>
+</tr>
+</tbody>
+</table>
+<h4 id="main-executors">Main executors</h4>
+<p>The following table describes available executors. Most of them correspond to public methods of the <a href="#methods-in-r-java-apis-and-json-interface">Java API</a>, 
+but some are only provided by the JSON interface, e.g. <em>branch</em> or <em>external</em>. 
+Each executor and its JSON configuration is described in more detail in the following sections. 
+Their usage is also demonstrated by several examples.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>analyze</strong></td>
+<td>Calls the analysis method with specified parameters</td>
+</tr>
+<tr>
+<td><strong>branch</strong></td>
+<td>Executes a branch point</td>
+</tr>
+<tr>
+<td><strong>createFolder</strong></td>
+<td>Creates a folder</td>
+</tr>
+<tr>
+<td><strong>export</strong></td>
+<td>Export data using a dedicated exporter</td>
+</tr>
+<tr>
+<td><strong>external</strong></td>
+<td>Runs an external tool</td>
+</tr>
+<tr>
+<td><strong>get</strong></td>
+<td>Gets specified table</td>
+</tr>
+<tr>
+<td><strong>imPort</strong></td>
+<td>Import a data file using a dedicated importer</td>
+</tr>
+<tr>
+<td><strong>itemParameters</strong></td>
+<td>Lists parameters for specified application, importer, or exporter</td>
+</tr>
+<tr>
+<td><strong>jobStatus</strong></td>
+<td>Gets the status for a job id</td>
+</tr>
+<tr>
+<td><strong>listItems</strong></td>
+<td>Lists available application, importer, or exporter items</td>
+</tr>
+<tr>
+<td><strong>list</strong></td>
+<td>Lists contents of specified folder</td>
+</tr>
+<tr>
+<td><strong>put</strong></td>
+<td>Puts table into specified folder</td>
+</tr>
+<tr>
+<td><strong>setParameters</strong></td>
+<td>Sets/adds/removes parameter strings</td>
+</tr>
+</tbody>
+</table>
+<h4 id="analyze">analyze</h4>
+<p>The <em>analyze</em> executor runs an analysis tool or workflow on the remote server.</p>
+<ul>
+<li><strong>method</strong> - Name of the platform tool or workflow, where orkflows are specified by their platform path.</li>
+<li><strong>parameters</strong> - A JSON object with parameters of the analysis tool or workflow.</li>
+<li><strong>workflow</strong> - Set <code>true</code> if the called method is a workflow.</li>
+<li><strong>wait</strong> - Set <code>true</code> to wait for the analysis to finish.</li>
+<li><strong>progress</strong>  - Set <code>true</code> to obtain more progress information.</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;do&quot;</span><span class="p">:</span>         <span class="s2">&quot;analyze&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;method&quot;</span><span class="p">:</span>     <span class="s2">&quot;name of tool or path to workflow&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">},</span>
+    <span class="nt">&quot;workflow&quot;</span><span class="p">:</span>   <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;wait&quot;</span><span class="p">:</span>       <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;progress&quot;</span><span class="p">:</span>   <span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h4 id="branch">branch</h4>
+<p>Selects the next task or task set using a branch selector. </p>
+<ul>
+<li><strong>branchSelector</strong> - The canonical name of the Java class that implements the executor.</li>
+</ul>
+<p>The JSON document can contain further properties that configure the selector. In addition, the JSON configuration that was used to invoke the <em>exec</em> application is handed to the selector. Please see example selector implementations in this source repository.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;do&quot;</span><span class="p">:</span>             <span class="s2">&quot;branch&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;branchSelector&quot;</span><span class="p">:</span> <span class="s2">&quot;com.branch.selector.Class&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;other parameters&quot;</span><span class="p">:</span> <span class="s2">&quot;further properties used by the selector&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h4 id="createfolder">createFolder</h4>
+<ul>
+<li><strong>path</strong> - Path of the parent folder.</li>
+<li><strong>name</strong> - Name of the new folder.</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;do&quot;</span><span class="p">:</span>   <span class="s2">&quot;createFolder&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;platform path&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;name of new folder&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h4 id="export">export</h4>
+<p>Exports an item from the platform workspace to a local file.</p>
+<ul>
+<li><strong>file</strong> - Local file to create for the export.</li>
+<li><strong>path</strong> - Path of the platform item to export.</li>
+<li><strong>exporter</strong> - Name of the exporter to apply, e.g. <code>Tab-separated text (*.txt)</code> for a text table.</li>
+<li><strong>parameters</strong> - Parameters to be specified to the exporter.</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;do&quot;</span><span class="p">:</span>         <span class="s2">&quot;export&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;file&quot;</span><span class="p">:</span>       <span class="s2">&quot;local file path to store export&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;path&quot;</span><span class="p">:</span>       <span class="s2">&quot;platform path to export&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;exporter&quot;</span><span class="p">:</span>   <span class="s2">&quot;name of exporter&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="s2">&quot;JsonObject with exporter parameters&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h4 id="external">external</h4>
+<p>This executor invokes an external program, e.g. a C++ application or an R script.</p>
+<ul>
+<li><strong>bin</strong> - The command to be executed.</li>
+<li><strong>params</strong> - List of parameters to be specified to the external program.</li>
+<li><strong>showOutput</strong> - Set <code>true</code> to get output of the external program printed to standard output.</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;do&quot;</span><span class="p">:</span>         <span class="s2">&quot;external&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;bin&quot;</span><span class="p">:</span>        <span class="s2">&quot;command to execute&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;params&quot;</span><span class="p">:</span>     <span class="s2">&quot;simple string or array of parameters to add to commandline&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;showOutput&quot;</span><span class="p">:</span> <span class="s2">&quot;set true to observe standard output of invoked tool&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h4 id="get">get</h4>
+<p>Downloads a table from the platform workspace and optionally stores it in a local file and/or prints it to standard output.</p>
+<ul>
+<li><strong>table</strong> - Platform path of the table to download.</li>
+<li><strong>toFile</strong> - Path of file to which to write table.</li>
+<li><strong>toStdout</strong> - Set <code>true</code> to get table printed on standard output.</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;do&quot;</span><span class="p">:</span>    <span class="s2">&quot;get&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;table&quot;</span><span class="p">:</span> <span class="s2">&quot;platform path of table to download&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;toFile&quot;</span><span class="p">:</span> <span class="s2">&quot;path of local file&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;toStdout&quot;</span><span class="p">:</span> <span class="s2">&quot;to print table object to standard output&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h4 id="import">imPort</h4>
+<p>Imports a local file to the platform workspace.</p>
+<ul>
+<li><strong>file</strong> - Local file to import.</li>
+<li><strong>path</strong> - Platform path including the name of imported item.</li>
+<li><strong>importer</strong> - The importer to apply, e.g. <code>Tabular (*.txt, *.xls, *.tab, etc.)</code> for tables.</li>
+<li><strong>parameters</strong> - Parameters for the importer.</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;do&quot;</span><span class="p">:</span>         <span class="s2">&quot;imPort&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;file&quot;</span><span class="p">:</span>       <span class="s2">&quot;local file to import&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;path&quot;</span><span class="p">:</span>       <span class="s2">&quot;the designated import location in the platform&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;importer&quot;</span><span class="p">:</span>   <span class="s2">&quot;name of importer&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="s2">&quot;JsonObject with importer parameters&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h4 id="itemparameters">itemParameters</h4>
+<p>This is a collectiv function that can get information about the available parameters for an analysis tool (application), exporter or importer. If the <em>item</em> is an exporter or importer, one needs to specify the corresponding target platform path to export or import.</p>
+<ul>
+<li><strong>name</strong> - Item name which may be the name of an analysis tool, an exporter or an importer name.</li>
+<li><strong>type</strong> - Type of item, one of application, exporter or importer.</li>
+<li><strong>path</strong> - If the item is an exporter or importer, the corresponding platform path is required to determine possible context-dependent parameters.</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;do&quot;</span><span class="p">:</span>   <span class="s2">&quot;itemParameters&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;name of item for which to get parameters&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;type of item for which to get parameters: application, exporter, importer&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;if exporter or importer, path for which to get parameters in context with ex-/importer&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h4 id="jobstatus">jobStatus</h4>
+<p>Returns the status of a running analysis job.</p>
+<ul>
+<li><strong>jobId</strong> - Id of the job whose status is requested.</li>
+<li><strong>toFile</strong> - Path of file to which to write output.</li>
+<li><strong>toStdout</strong> - Set <code>true</code> to get output printed on standard output.</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;do&quot;</span><span class="p">:</span>     <span class="s2">&quot;jobStatus&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;jobId&quot;</span><span class="p">:</span>  <span class="s2">&quot;id of platform job to request status&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;toFile&quot;</span><span class="p">:</span> <span class="s2">&quot;path of local file&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;toStdout&quot;</span><span class="p">:</span> <span class="s2">&quot;to print output to standard output&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h4 id="listitems">listItems</h4>
+<p>Gets listings of available applications, importers or exporters.</p>
+<ul>
+<li><strong>type</strong> - Type of items to list, one of application, exporter or importer.</li>
+<li><strong>toFile</strong> - Path of file to which to write output.</li>
+<li><strong>toStdout</strong> - Set <code>true</code> to get output printed on standard output.</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;do&quot;</span><span class="p">:</span>   <span class="s2">&quot;listItems&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;type of items to list: applications, importers, or exporters&quot;</span>
+    <span class="s2">&quot;toFile&quot;</span><span class="p">:</span> <span class="s2">&quot;path of local file&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;toStdout&quot;</span><span class="p">:</span> <span class="s2">&quot;to print output to standard output&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h4 id="list">list</h4>
+<p>Gets the listing of specified folder.</p>
+<ul>
+<li><strong>folder</strong> - Platform folder to get listing for.</li>
+<li><strong>toFile</strong> - Path of file to which to write output.</li>
+<li><strong>toStdout</strong> - Set <code>true</code> to get output printed on standard output.</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;do&quot;</span><span class="p">:</span>     <span class="s2">&quot;list&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;folder&quot;</span><span class="p">:</span> <span class="s2">&quot;platform folder to get listing for&quot;</span>
+    <span class="s2">&quot;toFile&quot;</span><span class="p">:</span> <span class="s2">&quot;path of local file&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;toStdout&quot;</span><span class="p">:</span> <span class="s2">&quot;to print output to standard output&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h4 id="put">put</h4>
+<p>Uploads a table from specified local file into the platform workspace.</p>
+<ul>
+<li><strong><em>file</em></strong> - Local file with data table to upload.</li>
+<li><strong><em>skip</em></strong> - Number of lines to skip in the beginning of the file.</li>
+<li><strong><em>delimiter</em></strong> - Column delimiter string.</li>
+<li><strong><em>table</em></strong> - JSON array of arrays with data columns. Note that the table has no title row, but columns are specified separately.</li>
+<li><strong><em>columns</em></strong> - Column definition by an array of two-element arrays giving column name and type, where type is one of <code>Integer, Float, Boolean, or Text</code>.</li>
+<li><strong><em>path</em></strong> - Platform path to put table which includes the name of the table item in the platform workspace.</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;do&quot;</span><span class="p">:</span>        <span class="s2">&quot;put&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;file&quot;</span><span class="p">:</span>      <span class="s2">&quot;file with data table to put into platform&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;skip&quot;</span><span class="p">:</span>      <span class="s2">&quot;number of lines to skip in the beginning of input file&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;delimiter of table columns in input file&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;table&quot;</span><span class="p">:</span>     <span class="s2">&quot;array of arrays with data to put into platform&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;columns&quot;</span><span class="p">:</span>   <span class="s2">&quot;array of two-element arrays specifying column names and type. The latter can be Integer, Float, Boolean, Text&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;path&quot;</span><span class="p">:</span>      <span class="s2">&quot;destination path of table in platform&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h4 id="setparameters">setParameters</h4>
+<p>Sets/adds/removes string replacements in the parameter object that will modify parameters of subsequent tasks.</p>
+<ul>
+<li><strong><em>set</em></strong> - a JSON object whose keys can be found in the <em>replaceStrings</em> array of the parameter object and whose value will replace the current one.</li>
+<li><strong><em>remove</em></strong> - a JSON object whose keys will be removed from the <em>replaceStrings</em> array of the parameter object.</li>
+<li><strong><em>before</em></strong> - an array of two-element arrays that are inserted in the beginning of the <em>replaceStrings</em> array.</li>
+<li><strong><em>after</em></strong> - an array of two-element arrays that are appended to the <em>replaceStrings</em> array.</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;do&quot;</span><span class="p">:</span>     <span class="s2">&quot;setParameters&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;set&quot;</span><span class="p">:</span>    <span class="s2">&quot;sets existing parameter to specified value&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;remove&quot;</span><span class="p">:</span> <span class="s2">&quot;removes existing parameter&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;before&quot;</span><span class="p">:</span> <span class="s2">&quot;add parameter before others in the parameter array&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;after&quot;</span><span class="p">:</span>  <span class="s2">&quot;add parameter at the end of the parameter array&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../basics/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Platform tools and parameters
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../chipseq_analysis_intro/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Analysis overview
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            &copy; 2022 geneXplain GmbH, Wolfenbuettel, Germany
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>

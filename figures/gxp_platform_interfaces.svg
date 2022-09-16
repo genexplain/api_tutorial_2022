@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="866.82263"
+   height="246.29066"
+   viewBox="0 0 229.34682 65.164408"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="gxp_platform_interfaces.svg"
+   inkscape:export-filename="/home/pst/GeneXplain_platform/2022_API_tutorial/mkd/docs/figures/gxp_platform_interfaces.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
+  <defs
+     id="defs2">
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker922"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Send">
+      <path
+         transform="matrix(-0.3,0,0,-0.3,0.69,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path920"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Send"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Send"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path895"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-0.3,0,0,-0.3,0.69,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Send"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Send"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path877"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.2,0,0,-0.2,-1.2,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.104"
+     inkscape:cx="429.99998"
+     inkscape:cy="37.107001"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g969"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1010"
+     inkscape:window-x="1680"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="10"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="10" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-18.520839,-123.26202)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot834"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"><flowRegion
+         id="flowRegion836"
+         style="font-size:16px"><rect
+           id="rect838"
+           width="91.428574"
+           height="55.714287"
+           x="101.42857"
+           y="124.28571"
+           style="font-size:16px" /></flowRegion><flowPara
+         id="flowPara840" /></flowRoot>    <g
+       id="g1005">
+      <g
+         id="g873"
+         transform="translate(18.520839,-17.759086)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="2.4122558"
+           y="146.99945"
+           id="text844"><tspan
+             sodipodi:role="line"
+             x="2.4122558"
+             y="146.99945"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.26458332"
+             id="tspan846">R project</tspan><tspan
+             sodipodi:role="line"
+             x="2.4122558"
+             y="152.29112"
+             style="font-size:4.23333311px;stroke-width:0.26458332"
+             id="tspan835">geneXplainR</tspan></text>
+        <text
+           id="text852"
+           y="169.51924"
+           x="2.8835449"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           xml:space="preserve"><tspan
+             id="tspan850"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.26458332"
+             y="169.51924"
+             x="2.8835449"
+             sodipodi:role="line">Java project</tspan><tspan
+             style="font-size:4.23333311px;stroke-width:0.26458332"
+             y="174.81091"
+             x="2.8835449"
+             sodipodi:role="line"
+             id="tspan837">genexplain-api</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="2.4639323"
+           y="192.07578"
+           id="text856"><tspan
+             sodipodi:role="line"
+             x="2.4639323"
+             y="192.07578"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.26458332"
+             id="tspan854">Commandline or execution as</tspan><tspan
+             sodipodi:role="line"
+             x="2.4639323"
+             y="197.36745"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.26458332"
+             id="tspan841">external program</tspan><tspan
+             sodipodi:role="line"
+             x="2.4639323"
+             y="202.6591"
+             style="font-size:4.23333311px;stroke-width:0.26458332"
+             id="tspan839">genexplain-api JSON interface</tspan></text>
+      </g>
+      <text
+         id="text861"
+         y="129.84297"
+         x="170.02849"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           id="tspan857"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.93888903px;line-height:1.5;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.26458332"
+           y="129.84297"
+           x="170.02849"
+           sodipodi:role="line">geneXplain platform</tspan><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93888903px;line-height:1.5;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.26458332"
+           y="137.25131"
+           x="170.02849"
+           sodipodi:role="line"
+           id="tspan859">Data management</tspan><tspan
+           style="font-size:4.23333311px;line-height:1.5;stroke-width:0.26458332"
+           y="143.94719"
+           x="170.02849"
+           sodipodi:role="line"
+           id="tspan877">Preparation, Filtering, Conversion,</tspan><tspan
+           style="font-size:4.23333311px;line-height:1.5;stroke-width:0.26458332"
+           y="150.2972"
+           x="170.02849"
+           sodipodi:role="line"
+           id="tspan881">Mapping</tspan><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93888903px;line-height:1.5;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.26458332"
+           y="157.35963"
+           x="170.02849"
+           sodipodi:role="line"
+           id="tspan885">Data analysis</tspan><tspan
+           style="font-size:4.23333311px;line-height:1.5;stroke-width:0.26458332"
+           y="164.05553"
+           x="170.02849"
+           sodipodi:role="line"
+           id="tspan889">Transcription factor binding sites, </tspan><tspan
+           style="font-size:4.23333311px;line-height:1.5;stroke-width:0.26458332"
+           y="170.40553"
+           x="170.02849"
+           sodipodi:role="line"
+           id="tspan893">Molecular pathways and networks,</tspan><tspan
+           style="font-size:4.23333311px;line-height:1.5;stroke-width:0.26458332"
+           y="176.75552"
+           x="170.02849"
+           sodipodi:role="line"
+           id="tspan895">Gene function, Disease biomarkers,</tspan><tspan
+           id="tspan928"
+           style="font-size:4.23333311px;line-height:1.5;stroke-width:0.26458332"
+           y="183.10553"
+           x="170.02849"
+           sodipodi:role="line">Workflows</tspan><tspan
+           style="font-size:4.23333311px;line-height:1.75;stroke-width:0.26458332"
+           y="187.67786"
+           x="170.02849"
+           sodipodi:role="line"
+           id="tspan883" /></text>
+      <g
+         id="g969">
+        <g
+           id="g926"
+           transform="translate(17.503011,-22.580641)">
+          <path
+             inkscape:connector-curvature="0"
+             id="path860"
+             d="M 82.443792,174.92197 H 138.83756"
+             style="fill:none;stroke:#000000;stroke-width:1.32291663;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Send)" />
+          <path
+             style="fill:none;stroke:#000000;stroke-width:1.32291663;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker922)"
+             d="M 140.75039,180.74284 H 84.356622"
+             id="path918"
+             inkscape:connector-curvature="0" />
+        </g>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="112.01587"
+           y="168.54285"
+           id="text932"><tspan
+             sodipodi:role="line"
+             x="112.01587"
+             y="168.54285"
+             style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.26458332"
+             id="tspan934">Download data or</tspan><tspan
+             sodipodi:role="line"
+             x="112.01587"
+             y="173.83452"
+             style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.26458332"
+             id="tspan940">analysis results</tspan></text>
+        <text
+           id="text948"
+           y="129.12419"
+           x="105.97903"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           xml:space="preserve"><tspan
+             id="tspan946"
+             style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.26458332"
+             y="129.12419"
+             x="105.97903"
+             sodipodi:role="line">Run analysis tools</tspan><tspan
+             style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.26458332"
+             y="134.41586"
+             x="105.97903"
+             sodipodi:role="line"
+             id="tspan952">and workflows, Upload</tspan><tspan
+             style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.26458332"
+             y="139.70752"
+             x="105.97903"
+             sodipodi:role="line"
+             id="tspan954">data, Create or delete</tspan><tspan
+             style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.26458332"
+             y="144.99919"
+             x="105.97903"
+             sodipodi:role="line"
+             id="tspan956">folders</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

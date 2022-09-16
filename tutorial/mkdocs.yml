@@ -3,7 +3,7 @@ theme:
     name: 'material'
     palette:
         primary: teal
-repo_url: https://github.com/genexplain/genexplain-api
+repo_url: https://github.com/genexplain/api_tutorial_2022
 repo_name: GitHub
 site_description: geneXplain platform API tutorial 2022
 copyright: '&copy; 2022 geneXplain GmbH, Wolfenbuettel, Germany'

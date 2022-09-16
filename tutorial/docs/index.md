@@ -33,7 +33,7 @@ asynchronously so that one is not required to wait for long analysis tasks.
 ## This tutorial
 
 The goal of this tutorial is to demonstrate how to carry out analyses on the geneXplain platform
-using the APIs with a focus on geneXplainR and the Java commandline application.
+using the programming and commandline interfaces.
 
 For those who would like to firstly see an example analysis, a quick start is provided [here](first_example.md).
 
@@ -51,7 +51,9 @@ The exercises shown in this tutorial use geneXplain platform version *7.0*.
 3. For parts requiring geneXplainR: R version &ge; 3.3
 4. For parts that depend on analysis of transcription factor binding sites: a TRANSFAC&#174; license.
 This can be obtained [here](https://genexplain.com/transfac/).
-5. An API package, Java or R. Please see below how to obtain them.
+5. For parts that depend on information from HumanPSD<sup>TM</sup>: a HumanPSD<sup>TM</sup> license.
+This can be obtained [here](https://genexplain.com/humanpsd/).
+6. An API package, Java or R. Please see below how to obtain them.
 
 We recommend obtaining the Java API package even if a user prefers R as the programming language, 
 because the Java package provides a few additional utilities.
